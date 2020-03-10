@@ -3,4 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- Background color of CardView used in {layout@activity_main_error}-->
+    <color name="colorCardBackground">#B2FFFFFF</color>
 </resources>

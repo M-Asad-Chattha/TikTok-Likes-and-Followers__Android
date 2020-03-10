@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">TikTok Likes and Followers</string>
+
+    <string name="category_home">Home</string>
+    <string name="category_earn">Earn</string>
+    <string name="category_follower">Follower</string>
+    <string name="category_like">Like</string>
+    <string name="category_comment">Comment</string>
+    <string name="category_share">Share</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

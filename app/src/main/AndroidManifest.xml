@@ -9,13 +9,66 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.FollowersListActivity"></activity>
+        <activity android:name=".Activities.GetFollowerActivity" />
+        <activity android:name=".HomeActivity"
+            android:theme="@style/NoActionBarTheme"/>
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/FullScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Activities.Earn.RateUsActivity"
+            android:label="Rate US" />
+        <activity
+            android:name=".Activities.Earn.DoShareActivity"
+            android:label="Do Share" />
+        <activity
+            android:name=".Activities.Earn.DoCommentActivity"
+            android:label="Do Comment" />
+        <activity
+            android:name=".Activities.Earn.DoFollowingActivity"
+            android:label="Do Folowing" />
+        <activity
+            android:name=".Activities.Earn.DoLikesActivity"
+            android:label="Do Likes" />
+        <activity
+            android:name=".Activities.Earn.ScratchAndWinActivity"
+            android:label="Scratch and Win" />
+        <activity
+            android:name=".Activities.Earn.WatchVideosActivity"
+            android:label="Watch Videos"/>
+
+        <activity
+            android:name=".Activities.Likes.LikesListActivity"
+            android:label="Likes List" />
+        <activity
+            android:name=".Activities.Likes.GetLikesActivity"
+            android:label="Get Likes" />
+
+        <activity
+            android:name=".Activities.Comments.CommentsListActivity"
+            android:label="Comments List" />
+        <activity
+            android:name=".Activities.Comments.GetCommentsActivity"
+            android:label="Get Comments" />
+
+        <activity
+            android:name=".Activities.Shares.ShareListActivity"
+            android:label="Share List" />
+
+        <activity
+            android:name=".Activities.Shares.GetShareActivity"
+            android:label="Get Share" />
+
+
     </application>
 
 </manifest>
