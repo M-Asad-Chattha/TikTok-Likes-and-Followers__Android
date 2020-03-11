@@ -52,7 +52,12 @@ public class CategoryAdapter extends FragmentPagerAdapter {
         return 6;
     }
 
-    @Override
+    /**
+     *
+     *Display Fragment name in TabLayout
+     */
+
+    /*@Override
     public CharSequence getPageTitle(int position) {
         if (position == 0) {
             return mContext.getString(R.string.category_home);
@@ -67,6 +72,6 @@ public class CategoryAdapter extends FragmentPagerAdapter {
         } else {
             return mContext.getString(R.string.category_share);
         }
-    }
+    }*/
 
 }

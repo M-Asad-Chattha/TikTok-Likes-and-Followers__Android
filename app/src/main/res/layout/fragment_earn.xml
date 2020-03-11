@@ -55,6 +55,15 @@
         </androidx.cardview.widget.CardView>
 
 
+        <!-- Native Ad Banner_1 -->
+        <com.facebook.ads.NativeAdLayout
+            android:id="@+id/native_ad_container_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" />
+
+
         <!-- Do Like Card -->
         <androidx.cardview.widget.CardView
             android:id="@+id/card_doLikes"
@@ -153,6 +162,15 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <!-- Native Ad Banner_1 -->
+        <com.facebook.ads.NativeAdLayout
+            android:id="@+id/native_ad_container_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" />
+
 
     </LinearLayout>
 </ScrollView>
