@@ -17,7 +17,7 @@
 
 
     <!-- NoActionbar and Transparent status bar -->
-    <style name="FullScreenTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
@@ -62,6 +62,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">82dp</item>
         <item name="android:layout_margin">16dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
     </style>
 
 
@@ -86,5 +87,47 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>
+
+
+    <!-- Styles for {activity@Scratch and Win}-->
+    <style name="card_view_scratchAndWin">
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="text_view_amount_scratchAndWin">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="text_view_diamond_scratchAndWin">
+        <!--        <item name="android:text">Diamond</item>-->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="text_view_description_scratchAndWin">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="image_view_icon_scratchAndWin">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@drawable/ic_diamond</item>
+    </style>
+
 
 </resources>

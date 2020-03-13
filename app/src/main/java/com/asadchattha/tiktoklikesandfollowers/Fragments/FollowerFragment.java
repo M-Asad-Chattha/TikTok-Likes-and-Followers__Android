@@ -14,8 +14,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.asadchattha.tiktoklikesandfollowers.Activities.FollowersListActivity;
-import com.asadchattha.tiktoklikesandfollowers.Activities.GetFollowerActivity;
+import com.asadchattha.tiktoklikesandfollowers.Activities.Followers.FollowersListActivity;
+import com.asadchattha.tiktoklikesandfollowers.Activities.Followers.GetFollowerActivity;
 import com.asadchattha.tiktoklikesandfollowers.R;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;

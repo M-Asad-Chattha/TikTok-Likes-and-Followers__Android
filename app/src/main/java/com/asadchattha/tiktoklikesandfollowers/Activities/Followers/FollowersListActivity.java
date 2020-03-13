@@ -1,4 +1,4 @@
-package com.asadchattha.tiktoklikesandfollowers.Activities;
+package com.asadchattha.tiktoklikesandfollowers.Activities.Followers;
 
 import androidx.appcompat.app.AppCompatActivity;
 

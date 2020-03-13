@@ -1,4 +1,4 @@
-package com.asadchattha.tiktoklikesandfollowers.Activities;
+package com.asadchattha.tiktoklikesandfollowers.Activities.Followers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +26,7 @@ public class GetFollowerActivity extends AppCompatActivity {
         follower.add(new Follower("Get 500 real followers in 900 diamonds.", "Get 900 Followers"));
         follower.add(new Follower("Get 1000 real followers in 1600 diamonds.", "Get 1000 Followers"));
 
-        GetFollowerAdapter itemsAdapter = new GetFollowerAdapter(this, follower, R.mipmap.ic_launcher);
+        GetFollowerAdapter itemsAdapter = new GetFollowerAdapter(this, follower, R.drawable.ic_add_follower);
 
         //Access LinearLayout to add subView into that.
         ListView listView = findViewById(R.id.list);

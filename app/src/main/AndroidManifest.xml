@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.FollowersListActivity"></activity>
-        <activity android:name=".Activities.GetFollowerActivity" />
-        <activity android:name=".HomeActivity"
-            android:theme="@style/NoActionBarTheme"/>
-
+        <activity android:name=".Activities.Earn.ScratchActivity"></activity>
+        <activity android:name=".Activities.Likes.PayToGetLikesActivity" />
+        <activity android:name=".Activities.Followers.FollowersListActivity" />
+        <activity android:name=".Activities.Followers.GetFollowerActivity" />
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/FullScreenTheme">
@@ -23,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activities.Earn.RateUsActivity"
             android:label="Rate US" />
@@ -44,31 +45,26 @@
             android:label="Scratch and Win" />
         <activity
             android:name=".Activities.Earn.WatchVideosActivity"
-            android:label="Watch Videos"/>
-
+            android:label="Watch Videos"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activities.Likes.LikesListActivity"
             android:label="Likes List" />
         <activity
             android:name=".Activities.Likes.GetLikesActivity"
             android:label="Get Likes" />
-
         <activity
             android:name=".Activities.Comments.CommentsListActivity"
             android:label="Comments List" />
         <activity
             android:name=".Activities.Comments.GetCommentsActivity"
             android:label="Get Comments" />
-
         <activity
             android:name=".Activities.Shares.ShareListActivity"
             android:label="Share List" />
-
         <activity
             android:name=".Activities.Shares.GetShareActivity"
             android:label="Get Share" />
-
-
     </application>
 
 </manifest>

@@ -24,7 +24,7 @@
 
                 <ImageView
                     style="@style/image_view_insideCardWidget_earnFragment"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/ic_add_follower" />
 
                 <TextView
                     style="@style/text_view_insideCardWidget_earnFragment"
@@ -44,7 +44,7 @@
 
                 <ImageView
                     style="@style/image_view_insideCardWidget_earnFragment"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/ic_follower_list" />
 
                 <TextView
                     style="@style/text_view_insideCardWidget_earnFragment"

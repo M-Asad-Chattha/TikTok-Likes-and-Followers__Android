@@ -1,9 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.Earn.ScratchAndWinActivity">
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <!-- 1.Card View-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_1"
+            style="@style/card_view_scratchAndWin"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="8dp"
+            app:contentPadding="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_view_amount_1"
+                    style="@style/text_view_amount_scratchAndWin"
+                    android:text="100" />
+
+                <TextView
+                    android:id="@+id/text_view_diamond_1"
+                    style="@style/text_view_diamond_scratchAndWin"
+                    android:layout_alignBottom="@id/text_view_amount_1" />
+
+                <TextView
+                    android:id="@+id/text_view_description_1"
+                    style="@style/text_view_description_scratchAndWin"
+                    android:layout_below="@id/text_view_amount_1"
+                    android:layout_toLeftOf="@id/image_view_icon_1"
+                    android:text="You can win 100 diamonds just by scratching coupons" />
+
+                <ImageView
+                    android:id="@+id/image_view_icon_1"
+                    style="@style/image_view_icon_scratchAndWin" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- 2.Card View-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_2"
+            style="@style/card_view_scratchAndWin"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="8dp"
+            app:contentPadding="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_view_amount_2"
+                    style="@style/text_view_amount_scratchAndWin"
+                    android:text="120" />
+
+                <TextView
+                    android:id="@+id/text_view_diamond_2"
+                    style="@style/text_view_diamond_scratchAndWin"
+                    android:layout_alignBottom="@id/text_view_amount_2" />
+
+                <TextView
+                    android:id="@+id/text_view_description_2"
+                    style="@style/text_view_description_scratchAndWin"
+                    android:layout_below="@id/text_view_amount_2"
+                    android:layout_toLeftOf="@id/image_view_icon_2"
+                    android:text="You can win 120 diamonds just by scratching coupons." />
+
+                <ImageView
+                    android:id="@+id/image_view_icon_2"
+                    style="@style/image_view_icon_scratchAndWin" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- 3.Card View-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_3"
+            style="@style/card_view_scratchAndWin"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="8dp"
+            app:contentPadding="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_view_amount_3"
+                    style="@style/text_view_amount_scratchAndWin"
+                    android:text="110" />
+
+                <TextView
+                    android:id="@+id/text_view_diamond_3"
+                    style="@style/text_view_diamond_scratchAndWin"
+                    android:layout_alignBottom="@id/text_view_amount_3" />
+
+                <TextView
+                    android:id="@+id/text_view_description_3"
+                    style="@style/text_view_description_scratchAndWin"
+                    android:layout_below="@id/text_view_amount_3"
+                    android:layout_toLeftOf="@id/image_view_icon_3"
+                    android:text="You can win 120 diamonds just by scratching coupons" />
+
+                <ImageView
+                    android:id="@+id/image_view_icon_3"
+                    style="@style/image_view_icon_scratchAndWin" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- Native Ad Banner -->
+        <com.facebook.ads.NativeAdLayout
+            android:id="@+id/native_ad_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" />
+
+        <!-- 4.Card View-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_4"
+            style="@style/card_view_scratchAndWin"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="8dp"
+            app:contentPadding="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_view_amount_4"
+                    style="@style/text_view_amount_scratchAndWin"
+                    android:text="115" />
+
+                <TextView
+                    android:id="@+id/text_view_diamond_4"
+                    style="@style/text_view_diamond_scratchAndWin"
+                    android:layout_alignBottom="@id/text_view_amount_4" />
+
+                <TextView
+                    android:id="@+id/text_view_description_4"
+                    style="@style/text_view_description_scratchAndWin"
+                    android:layout_below="@id/text_view_amount_4"
+                    android:layout_toLeftOf="@id/image_view_icon_4"
+                    android:text="You can win 115 diamonds just by scratching coupons" />
+
+                <ImageView
+                    android:id="@+id/image_view_icon_4"
+                    style="@style/image_view_icon_scratchAndWin" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 5.Card View-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_5"
+            style="@style/card_view_scratchAndWin"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="8dp"
+            app:contentPadding="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_view_amount_5"
+                    style="@style/text_view_amount_scratchAndWin"
+                    android:text="95" />
+
+                <TextView
+                    android:id="@+id/text_view_diamond_5"
+                    style="@style/text_view_diamond_scratchAndWin"
+                    android:layout_alignBottom="@id/text_view_amount_5" />
+
+                <TextView
+                    android:id="@+id/text_view_description_5"
+                    style="@style/text_view_description_scratchAndWin"
+                    android:layout_below="@id/text_view_amount_5"
+                    android:layout_toLeftOf="@id/image_view_icon_5"
+                    android:text="You can win 95 diamonds just by scratching coupons" />
+
+                <ImageView
+                    android:id="@+id/image_view_icon_5"
+                    style="@style/image_view_icon_scratchAndWin" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+</ScrollView>
