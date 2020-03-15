@@ -58,6 +58,8 @@ public class WatchVideosActivity extends AppCompatActivity {
 
     private SharedPrefrencesHelper sharedPrefrencesHelper;
 
+    private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +70,21 @@ public class WatchVideosActivity extends AppCompatActivity {
         sharedPrefrencesHelper = new SharedPrefrencesHelper(WatchVideosActivity.this);
 
         /* Custom Toolbar  */
-        Toolbar toolbar = findViewById(R.id.toolbar); // get the reference of Toolbar
-        setSupportActionBar(toolbar); // Setting/replace toolbar as the ActionBar
+        toolbar = findViewById(R.id.toolbar); // get the reference of Toolbar
+//        setSupportActionBar(toolbar); // Setting/replace toolbar as the ActionBar
+
+        /*Setup up button [Back Button on Roight of AppBar]*/
+        toolbar.setNavigationIcon(R.drawable.ic_up_button);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Your code
+                finish();
+            }
+        });
+
+
+        /*Load saved Data into Toolbar{link@SharedPrefrences}*/
         loadToolbarData();
 
         AudienceNetworkAds.initialize(this);
@@ -247,8 +262,10 @@ public class WatchVideosActivity extends AppCompatActivity {
     }
 
     private void updateUI(String savedDiamondsInSharedPref) {
-        Toolbar customToolbar = findViewById(R.id.toolbar);
-        TextView diamond = customToolbar.findViewById(R.id.text_view_diamonds);
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+        TextView diamond = toolbar.findViewById(R.id.text_view_diamonds);
+
+        toolbarTitle.setText("Watch Video");
         diamond.setText(savedDiamondsInSharedPref);
     }
 

@@ -5,4 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Likes.LikesListActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/custom_toolbar" />
+
 </RelativeLayout>

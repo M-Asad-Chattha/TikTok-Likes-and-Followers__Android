@@ -9,10 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Earn.ScratchActivity"></activity>
+
+        <activity android:name=".Activities.Earn.ScratchActivity" />
+
         <activity android:name=".Activities.Likes.PayToGetLikesActivity" />
-        <activity android:name=".Activities.Followers.FollowersListActivity" />
-        <activity android:name=".Activities.Followers.GetFollowerActivity" />
+
+        <activity
+            android:name=".Activities.Followers.FollowersListActivity"
+            android:theme="@style/NoActionBarTheme" />
+
+        <activity
+            android:name=".Activities.Followers.GetFollowerActivity"
+            android:theme="@style/NoActionBarTheme" />
+
         <activity
             android:name=".HomeActivity"
             android:theme="@style/NoActionBarTheme" />
@@ -27,44 +36,60 @@
         </activity>
         <activity
             android:name=".Activities.Earn.RateUsActivity"
-            android:label="Rate US" />
+            android:label="Rate US"
+            android:theme="@style/NoActionBarTheme" />
+
         <activity
             android:name=".Activities.Earn.DoShareActivity"
-            android:label="Do Share" />
+            android:label="Do Share"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activities.Earn.DoCommentActivity"
-            android:label="Do Comment" />
+            android:label="Do Comment"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activities.Earn.DoFollowingActivity"
-            android:label="Do Folowing" />
+            android:label="Do Folowing"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activities.Earn.DoLikesActivity"
-            android:label="Do Likes" />
+            android:label="Do Likes"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activities.Earn.ScratchAndWinActivity"
-            android:label="Scratch and Win" />
+            android:label="Scratch and Win"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activities.Earn.WatchVideosActivity"
             android:label="Watch Videos"
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activities.Likes.LikesListActivity"
-            android:label="Likes List" />
+            android:label="Likes List"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activities.Likes.GetLikesActivity"
-            android:label="Get Likes" />
+            android:label="Get Likes"
+            android:theme="@style/NoActionBarTheme" />
+
         <activity
             android:name=".Activities.Comments.CommentsListActivity"
-            android:label="Comments List" />
+            android:label="Comments List"
+            android:theme="@style/NoActionBarTheme" />
+
         <activity
             android:name=".Activities.Comments.GetCommentsActivity"
-            android:label="Get Comments" />
+            android:label="Get Comments"
+            android:theme="@style/NoActionBarTheme" />
+
         <activity
             android:name=".Activities.Shares.ShareListActivity"
-            android:label="Share List" />
+            android:label="Share List"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activities.Shares.GetShareActivity"
-            android:label="Get Share" />
+            android:label="Get Share"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>
