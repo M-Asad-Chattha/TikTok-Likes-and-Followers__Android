@@ -1,16 +1,19 @@
-package com.asadchattha.tiktoklikesandfollowers.Activities.Likes;
+package com.asadchattha.tiktoklikesandfollowers.Activities.Designing;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.asadchattha.tiktoklikesandfollowers.Helper.SharedPrefrencesHelper;
+import com.asadchattha.tiktoklikesandfollowers.Activities.Earn.ScratchAndWinActivity;
 import com.asadchattha.tiktoklikesandfollowers.R;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -25,41 +28,43 @@ import com.facebook.ads.NativeAdListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LikesListActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private SharedPrefrencesHelper sharedPrefrencesHelper;
+public class PopupAdActivity extends AppCompatActivity {
 
     /*facebook Native ad*/
     private NativeAdLayout nativeAdLayout;
     private LinearLayout adView;
     private NativeAd nativeAd;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_likes_list);
+        setContentView(R.layout.activity_popup_ad);
 
-        /*SharedPref Helper*/
-        sharedPrefrencesHelper = new SharedPrefrencesHelper(LikesListActivity.this);
+        //set popup window with side margins
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        /*Custom Toolbar*/
-        toolbar = findViewById(R.id.toolbar);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        getWindow().setLayout((int) (width * .7), (int) (height * .5));
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.gravity = Gravity.CENTER;
+        params.x = 0;
+        params.y = -20;
+        getWindow().setAttributes(params);
 
-        /*Setup up button [Back Button on Roight of AppBar]*/
-        toolbar.setNavigationIcon(R.drawable.ic_up_button);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+       /* // end popup
+        lv_athletes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                // Your code
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                sessionManager.setSelectedAthlete(athleteslist.get(position));
+                Intent intent = new Intent(PopupActivity.this, ScratchAndWinActivity.class);
+                startActivity(intent);
                 finish();
             }
-        });
-
-
-        /*Load saved Data into Toolbar{link@SharedPrefrences}*/
-        loadToolbarData();
-
+        });*/
 
         AudienceNetworkAds.initialize(this);
         loadNativeAd();
@@ -155,23 +160,14 @@ public class LikesListActivity extends AppCompatActivity {
     }
 
 
-
-    private void loadToolbarData() {
-        updateUI(sharedPrefrencesHelper.getDiamonds());
-
-    }
-
-    private void updateUI(String savedDiamondsInSharedPref) {
-        TextView diamond = toolbar.findViewById(R.id.text_view_diamonds);
-        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
-
-        toolbarTitle.setText("Likes List");
-        diamond.setText(savedDiamondsInSharedPref);
-    }
-
     @Override
-    protected void onResume() {
-        super.onResume();
-        loadToolbarData();
+    public void onBackPressed() {
+
+    }
+
+    public void onClickClose(View view) {
+        Intent intent = new Intent(PopupAdActivity.this, ScratchAndWinActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

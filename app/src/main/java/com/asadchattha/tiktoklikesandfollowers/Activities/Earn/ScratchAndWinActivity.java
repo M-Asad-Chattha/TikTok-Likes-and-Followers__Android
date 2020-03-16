@@ -1,5 +1,6 @@
 package com.asadchattha.tiktoklikesandfollowers.Activities.Earn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,9 +31,7 @@ import java.util.List;
 
 public class ScratchAndWinActivity extends AppCompatActivity {
 
-    /**
-     * facebook Native ad
-     */
+    /*facebook Native ad*/
     private NativeAdLayout nativeAdLayout;
     private LinearLayout adView;
     private NativeAd nativeAd;
@@ -180,5 +179,25 @@ public class ScratchAndWinActivity extends AppCompatActivity {
         loadToolbarData();
     }
 
+    public void onClickScratchCard(View view) {
+        String tag = (String) view.getTag();
+        Intent intent = new Intent(ScratchAndWinActivity.this, ScratchActivity.class);
+
+        Log.i("Scratch", "Item tag Number is: " + tag);
+
+        if (tag.equals("1")) {
+            intent.putExtra("Reward", "100");
+        } else if (tag.equals("2")) {
+            intent.putExtra("Reward", "120");
+        } else if (tag.equals("3")) {
+            intent.putExtra("Reward", "110");
+        } else if (tag.equals("4")) {
+            intent.putExtra("Reward", "115");
+        } else if (tag.equals("5")) {
+            intent.putExtra("Reward", "95");
+        }
+
+        startActivity(intent);
+    }
 }
 

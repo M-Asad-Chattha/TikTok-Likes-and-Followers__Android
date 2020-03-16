@@ -3,18 +3,24 @@ package com.asadchattha.tiktoklikesandfollowers.Model;
 public class Follower {
 
     private String mDescription;
-    private String mDiamondAmount;
+    private String mAmountDescription;
+    private int mAmount;
 
-    public Follower(String description, String diamondAmount) {
+    public Follower(String description, String amountDescription, int amount) {
         mDescription = description;
-        mDiamondAmount = diamondAmount;
+        mAmountDescription = amountDescription;
+        mAmount = amount;
     }
 
     public String getDescription() {
         return mDescription;
     }
 
-    public String getDiamondAmount() {
-        return mDiamondAmount;
+    public String getAmountDescription() {
+        return mAmountDescription;
+    }
+
+    public int getDiamondAmount() {
+        return mAmount;
     }
 }

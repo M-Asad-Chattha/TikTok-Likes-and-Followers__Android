@@ -41,14 +41,12 @@ import java.util.Map;
 
 public class WatchVideosActivity extends AppCompatActivity {
 
-    /**
-     * facebook Native ad
-     */
+    /*facebook Native ad*/
     private NativeAdLayout nativeAdLayout;
     private LinearLayout adView;
     private NativeAd nativeAd;
 
-    //    Rewarded Video Add
+    // Rewarded Video Add
     private RewardedVideoAd rewardedVideoAd;
 
     // Progress HUD
@@ -253,8 +251,6 @@ public class WatchVideosActivity extends AppCompatActivity {
 
         sharedPrefrencesHelper.updateDiamonds(Integer.toString(mDiamonds));
 
-//        Log.i("UPDATE", "Updated diamonds are: " + sharedpreferences.getString("diamonds", "0"));
-
         // Update UI
         updateFirebase(Integer.toString(mDiamonds));
         updateUI(Integer.toString(mDiamonds));
@@ -273,8 +269,6 @@ public class WatchVideosActivity extends AppCompatActivity {
     private void showProgressHUD() {
         hud = KProgressHUD.create(WatchVideosActivity.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-//                    .setLabel("Please wait")
-//                    .setDetailsLabel("Downloading data")
                 .setCancellable(false)
                 .setAnimationSpeed(2)
                 .setDimAmount(0.5f)
@@ -290,32 +284,8 @@ public class WatchVideosActivity extends AppCompatActivity {
 
 
     private void updateFirebase(String diamonds) {
-
         FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper(WatchVideosActivity.this);
         firebaseDatabaseHelper.updateDiamonds(diamonds);
-
-        /*DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                if (databaseError != null) {
-                    Log.e("TAG_Firebase", "Data could not be saved " + databaseError.getMessage());
-                } else {
-                    Log.i("TAG_Firebase", "Data saved successfully.");
-                }
-            }
-        };
-
-        *//* Gey Random Generated Key  *//*
-        String userKey = database.getReference().push().getKey();
-        DatabaseReference databaseReference = database.getReference("Users").child(userKey);
-
-        Map dataMap = new HashMap();
-        dataMap.put("diamond", diamonds);
-
-        // Save Data to Firebase
-        databaseReference.updateChildren(dataMap, completionListener);*/
-
-
     }
 
     private void loadToolbarData() {

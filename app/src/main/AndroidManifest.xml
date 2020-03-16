@@ -9,19 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Activities.Earn.ScratchActivity" />
-
+        <activity
+            android:name=".Activities.PurchaseReactionsActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".Activities.Designing.PopupActivity"
+            android:theme="@style/AppTheme.popup" />
+        <activity
+            android:name=".Activities.Designing.PopupAdActivity"
+            android:theme="@style/AppTheme.popup" />
+        <activity
+            android:name=".Activities.Earn.ScratchActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activities.Likes.PayToGetLikesActivity" />
-
         <activity
             android:name=".Activities.Followers.FollowersListActivity"
             android:theme="@style/NoActionBarTheme" />
-
         <activity
             android:name=".Activities.Followers.GetFollowerActivity"
             android:theme="@style/NoActionBarTheme" />
-
         <activity
             android:name=".HomeActivity"
             android:theme="@style/NoActionBarTheme" />
@@ -38,7 +44,6 @@
             android:name=".Activities.Earn.RateUsActivity"
             android:label="Rate US"
             android:theme="@style/NoActionBarTheme" />
-
         <activity
             android:name=".Activities.Earn.DoShareActivity"
             android:label="Do Share"
@@ -71,17 +76,14 @@
             android:name=".Activities.Likes.GetLikesActivity"
             android:label="Get Likes"
             android:theme="@style/NoActionBarTheme" />
-
         <activity
             android:name=".Activities.Comments.CommentsListActivity"
             android:label="Comments List"
             android:theme="@style/NoActionBarTheme" />
-
         <activity
             android:name=".Activities.Comments.GetCommentsActivity"
             android:label="Get Comments"
             android:theme="@style/NoActionBarTheme" />
-
         <activity
             android:name=".Activities.Shares.ShareListActivity"
             android:label="Share List"

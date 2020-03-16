@@ -27,6 +27,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_1"
                 style="@style/card_view_scratchAndWin"
+                android:onClick="onClickScratchCard"
+                android:tag="1"
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="8dp"
                 app:contentPadding="10dp">
@@ -43,7 +45,9 @@
                     <TextView
                         android:id="@+id/text_view_diamond_1"
                         style="@style/text_view_diamond_scratchAndWin"
-                        android:layout_alignBottom="@id/text_view_amount_1" />
+                        android:layout_alignBottom="@id/text_view_amount_1"
+                        android:layout_toRightOf="@id/text_view_amount_1"
+                        android:text="Diamonds" />
 
                     <TextView
                         android:id="@+id/text_view_description_1"
@@ -64,6 +68,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_2"
                 style="@style/card_view_scratchAndWin"
+                android:onClick="onClickScratchCard"
+                android:tag="2"
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="8dp"
                 app:contentPadding="10dp">
@@ -80,7 +86,9 @@
                     <TextView
                         android:id="@+id/text_view_diamond_2"
                         style="@style/text_view_diamond_scratchAndWin"
-                        android:layout_alignBottom="@id/text_view_amount_2" />
+                        android:layout_alignBottom="@id/text_view_amount_2"
+                        android:layout_toRightOf="@id/text_view_amount_2"
+                        android:text="Diamonds" />
 
                     <TextView
                         android:id="@+id/text_view_description_2"
@@ -100,6 +108,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_3"
                 style="@style/card_view_scratchAndWin"
+                android:onClick="onClickScratchCard"
+                android:tag="3"
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="8dp"
                 app:contentPadding="10dp">
@@ -116,7 +126,9 @@
                     <TextView
                         android:id="@+id/text_view_diamond_3"
                         style="@style/text_view_diamond_scratchAndWin"
-                        android:layout_alignBottom="@id/text_view_amount_3" />
+                        android:layout_alignBottom="@id/text_view_amount_3"
+                        android:layout_toRightOf="@id/text_view_amount_3"
+                        android:text="Diamonds" />
 
                     <TextView
                         android:id="@+id/text_view_description_3"
@@ -145,6 +157,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_4"
                 style="@style/card_view_scratchAndWin"
+                android:onClick="onClickScratchCard"
+                android:tag="4"
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="8dp"
                 app:contentPadding="10dp">
@@ -161,7 +175,9 @@
                     <TextView
                         android:id="@+id/text_view_diamond_4"
                         style="@style/text_view_diamond_scratchAndWin"
-                        android:layout_alignBottom="@id/text_view_amount_4" />
+                        android:layout_alignBottom="@id/text_view_amount_4"
+                        android:layout_toRightOf="@id/text_view_amount_4"
+                        android:text="Diamonds" />
 
                     <TextView
                         android:id="@+id/text_view_description_4"
@@ -181,6 +197,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_5"
                 style="@style/card_view_scratchAndWin"
+                android:onClick="onClickScratchCard"
+                android:tag="5"
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="8dp"
                 app:contentPadding="10dp">
@@ -197,7 +215,9 @@
                     <TextView
                         android:id="@+id/text_view_diamond_5"
                         style="@style/text_view_diamond_scratchAndWin"
-                        android:layout_alignBottom="@id/text_view_amount_5" />
+                        android:layout_alignBottom="@id/text_view_amount_5"
+                        android:layout_toRightOf="@id/text_view_amount_5"
+                        android:text="Diamonds" />
 
                     <TextView
                         android:id="@+id/text_view_description_5"

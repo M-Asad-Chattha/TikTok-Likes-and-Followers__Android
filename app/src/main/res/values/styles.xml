@@ -91,7 +91,7 @@
 
     <!-- Styles for {activity@Scratch and Win}-->
     <style name="card_view_scratchAndWin">
-        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -127,6 +127,14 @@
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:src">@drawable/ic_diamond</item>
+    </style>
+
+
+    //theme for popup
+
+    <style name="AppTheme.popup" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
 

@@ -49,6 +49,7 @@ dependencies {
     // ProgressHUD {link@https://github.com/haonan1/KProgressHUD}
     implementation 'com.kaopiz:kprogresshud:1.2.0'
 
-
+    /*Scratch View {link@https://github.com/sharish/ScratchView}*/
+    implementation 'com.github.cooltechworks:ScratchView:1.1'
 
 }

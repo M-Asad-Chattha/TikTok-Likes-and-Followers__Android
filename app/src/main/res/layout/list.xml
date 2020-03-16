@@ -16,4 +16,12 @@
         android:drawSelectorOnTop="true"
         android:orientation="vertical" />
 
+    <!-- Native Ad Banner -->
+    <!--<com.facebook.ads.NativeAdLayout
+        android:id="@+id/native_ad_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp" />-->
+
 </LinearLayout>

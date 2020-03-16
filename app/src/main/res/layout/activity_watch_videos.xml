@@ -35,6 +35,7 @@
         android:onClick="onClickWatchVideo"
         android:text="Watch Video" />
 
+
     <!-- Native Ad Banner -->
     <com.facebook.ads.NativeAdLayout
         android:id="@+id/native_ad_container"

@@ -44,7 +44,7 @@ public class GetFollowerAdapter extends ArrayAdapter<Follower> {
         textViewDescription.setText(mFollower.getDescription());
 
         TextView textViewAmount = listItemView.findViewById(R.id.text_view_amount);
-        textViewAmount.setText(mFollower.getDiamondAmount());
+        textViewAmount.setText(mFollower.getAmountDescription());
 
         ImageView icon = listItemView.findViewById(R.id.image_view_icon);
         icon.setImageResource(mImageResourceId);
