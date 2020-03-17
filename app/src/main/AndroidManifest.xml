@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.PurchaseReactionsActivity"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/NoActionBarTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Activities.Designing.PopupActivity"
             android:theme="@style/AppTheme.popup" />

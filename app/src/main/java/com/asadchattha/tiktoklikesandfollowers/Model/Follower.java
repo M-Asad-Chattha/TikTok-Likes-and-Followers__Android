@@ -5,11 +5,13 @@ public class Follower {
     private String mDescription;
     private String mAmountDescription;
     private int mAmount;
+    private int mNumberOfReactions;
 
-    public Follower(String description, String amountDescription, int amount) {
+    public Follower(String description, String amountDescription, int amount, int numberOfReactions) {
         mDescription = description;
         mAmountDescription = amountDescription;
         mAmount = amount;
+        mNumberOfReactions = numberOfReactions;
     }
 
     public String getDescription() {
@@ -22,5 +24,9 @@ public class Follower {
 
     public int getDiamondAmount() {
         return mAmount;
+    }
+
+    public int getNumberOfReactions() {
+        return mNumberOfReactions;
     }
 }

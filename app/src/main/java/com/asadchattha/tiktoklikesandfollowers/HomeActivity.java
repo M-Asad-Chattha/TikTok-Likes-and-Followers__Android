@@ -136,4 +136,9 @@ public class HomeActivity extends AppCompatActivity {
 
         updateUI(sharedPrefrencesHelper.getDiamonds());
     }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
 }

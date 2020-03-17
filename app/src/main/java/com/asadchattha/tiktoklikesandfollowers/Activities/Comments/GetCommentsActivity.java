@@ -31,6 +31,8 @@ public class GetCommentsActivity extends AppCompatActivity {
     private SharedPrefrencesHelper sharedPrefrencesHelper;
 
     private String priceInDiamonds;
+    private String numberOfReactions;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,12 @@ public class GetCommentsActivity extends AppCompatActivity {
         setContentView(R.layout.list);
 
         final ArrayList<Follower> follower = new ArrayList<Follower>();
-        follower.add(new Follower("Get 20 real comments in 60 diamonds.", "Get 60 Comments", 60));
-        follower.add(new Follower("Get 40 real comments in 100 diamonds.", " Get 100 Comments", 100));
-        follower.add(new Follower("Get 80 real comments in 180 diamonds.", "Get 180 Comments", 180));
-        follower.add(new Follower("Get 200 real comments in 400 diamonds.", "Get 400 Comments", 400));
-        follower.add(new Follower("Get 500 real comments in 900 diamonds.", "Get 900 Comments", 900));
-        follower.add(new Follower("Get 1000 real comments in 1600 diamonds.", "Get 1000 Comments", 1600));
+        follower.add(new Follower("Get 20 real comments in 60 diamonds.", "Get 20 Comments", 60, 20));
+        follower.add(new Follower("Get 40 real comments in 100 diamonds.", " Get 40 Comments", 100, 40));
+        follower.add(new Follower("Get 80 real comments in 180 diamonds.", "Get 80 Comments", 180, 80));
+        follower.add(new Follower("Get 200 real comments in 400 diamonds.", "Get 200 Comments", 400, 200));
+        follower.add(new Follower("Get 500 real comments in 900 diamonds.", "Get 500 Comments", 900, 500));
+        follower.add(new Follower("Get 1000 real comments in 1600 diamonds.", "Get 1000 Comments", 1600, 1000));
 
         GetFollowerAdapter itemsAdapter = new GetFollowerAdapter(this, follower, R.drawable.ic_add_comment);
 
@@ -79,6 +81,7 @@ public class GetCommentsActivity extends AppCompatActivity {
                 Follower word = follower.get(position);
 
                 priceInDiamonds = Integer.toString(word.getDiamondAmount());
+                numberOfReactions = Integer.toString(word.getNumberOfReactions());
 
                 if (Integer.parseInt(sharedPrefrencesHelper.getDiamonds()) >= word.getDiamondAmount()) {
                     showDialogPositive();
@@ -120,6 +123,7 @@ public class GetCommentsActivity extends AppCompatActivity {
                 Intent intent = new Intent(GetCommentsActivity.this, PurchaseReactionsActivity.class);
                 intent.putExtra("ReactionType", "Comments");
                 intent.putExtra("PriceInDiamonds", priceInDiamonds);
+                intent.putExtra("NumberOfReactions", numberOfReactions);
                 startActivity(intent);
 
             }
