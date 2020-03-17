@@ -6,11 +6,13 @@ import android.util.Log;
 
 public class SharedPrefrencesHelper {
 
-    private String userKey;
-    private String diamonds;
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
+    private String userKey;
+    private String diamonds;
     private Context mContext;
+    private String profileURL;
+
 
     public SharedPrefrencesHelper(Context context) {
         this.mContext = context;
@@ -26,6 +28,11 @@ public class SharedPrefrencesHelper {
     public String getDiamonds() {
         diamonds = sharedpreferences.getString("diamonds", "0");
         return diamonds;
+    }
+
+    public String getProfileURL() {
+        profileURL = sharedpreferences.getString("profileURL", null);
+        return profileURL;
     }
 
 
@@ -44,6 +51,8 @@ public class SharedPrefrencesHelper {
         editor.putBoolean("isOpeningFirstTime", status);
         editor.apply();
     }
+
+
 
 
     /*private void saveDataToSharedPref(String tiktokUserKey, String tiktokURL, String diamonds) {

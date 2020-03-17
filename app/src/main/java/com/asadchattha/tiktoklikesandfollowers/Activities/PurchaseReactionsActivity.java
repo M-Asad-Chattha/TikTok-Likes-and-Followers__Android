@@ -7,17 +7,20 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.asadchattha.tiktoklikesandfollowers.Activities.Earn.WatchVideosActivity;
 import com.asadchattha.tiktoklikesandfollowers.Helper.FirebaseDatabaseHelper;
 import com.asadchattha.tiktoklikesandfollowers.Helper.SharedPrefrencesHelper;
-import com.asadchattha.tiktoklikesandfollowers.MainActivity;
+import com.asadchattha.tiktoklikesandfollowers.HomeActivity;
+import com.asadchattha.tiktoklikesandfollowers.Model.Post;
+import com.asadchattha.tiktoklikesandfollowers.Model.User;
 import com.asadchattha.tiktoklikesandfollowers.R;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
@@ -37,8 +40,8 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
 
     // Progress HUD
     private KProgressHUD hud;
-    private FirebaseDatabase database;
     private Toolbar toolbar;
+
     /*GUI Views*/
     private CircleImageView imageViewReaction_1;
     private CircleImageView imageViewReaction_2;
@@ -52,6 +55,9 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
     private TextView textViewAmount;
 
     private EditText editText;
+
+    /*Firebase*/
+    private FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,21 +107,38 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
         /*Load GUI Data*/
         loadGUIValues();
 
+        /*Intialize Firebase Instance*/
+        database = FirebaseDatabase.getInstance();
+
     }
 
 
-    private void updateSharedPref() {
-        int mDiamonds = Integer.parseInt(sharedPrefrencesHelper.getDiamonds());
-        mDiamonds += 10;
+    private void updateData() {
+        int diamonds = Integer.parseInt(sharedPrefrencesHelper.getDiamonds());
+        diamonds -= Integer.parseInt(priceInDiamondsSendedByIntent);
 
-        sharedPrefrencesHelper.updateDiamonds(Integer.toString(mDiamonds));
+        String updatedDiamonds = Integer.toString(diamonds);
 
-//        Log.i("UPDATE", "Updated diamonds are: " + sharedpreferences.getString("diamonds", "0"));
+        updateSharedPref(updatedDiamonds);
+        updateFirebaseDatabase(updatedDiamonds);
+    }
+
+    private void updateFirebaseDatabase(String diamonds) {
+        FirebaseDatabaseHelper databaseHelper = new FirebaseDatabaseHelper(PurchaseReactionsActivity.this);
+        databaseHelper.updateDiamonds(diamonds);
+    }
+
+    private void updateSharedPref(String diamonds) {
+        sharedPrefrencesHelper.updateDiamonds(diamonds);
 
         // Update UI
-        updateFirebase(Integer.toString(mDiamonds));
-        updateUI(Integer.toString(mDiamonds));
+        updateUI(diamonds);
 
+        // Dismiss Progress HUD
+        dismissProgressHUD();
+
+        //Go To Next Activity
+        goToNextActivity();
     }
 
     private void updateUI(String savedDiamondsInSharedPref) {
@@ -124,7 +147,6 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
 
         toolbarTitle.setText("Get " + reactionTypeSendedByIntent);
         diamond.setText(savedDiamondsInSharedPref);
-
 
     }
 
@@ -143,14 +165,6 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
         if (hud.isShowing()) {
             hud.dismiss();
         }
-    }
-
-
-    private void updateFirebase(String diamonds) {
-
-        FirebaseDatabaseHelper firebaseDatabaseHelper = new FirebaseDatabaseHelper(PurchaseReactionsActivity.this);
-        firebaseDatabaseHelper.updateDiamonds(diamonds);
-
     }
 
     private void loadToolbarData() {
@@ -230,18 +244,19 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
     }
 
 
-    private void validateInput(String tiktokURL) {
+    private void validateInput(String postURL) {
 
         String patternStr = "https://vm.tiktok.com/+[a-zA-z0-9_-]+/";
         Pattern pattern = Pattern.compile(patternStr);
 
         // create a matcher that will match the given input against this pattern
-        Matcher matcher = pattern.matcher(tiktokURL);
+        Matcher matcher = pattern.matcher(postURL);
 
         boolean matchFound = matcher.matches();
 
         if (matchFound) {
             showProgressHUD();
+            uploadToFirebase(postURL);
         } else {
             showDialog();
         }
@@ -258,5 +273,45 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
             }
         });
         builder.create().show();
+    }
+
+
+    private void uploadToFirebase(String postURL) {
+        DatabaseReference.CompletionListener completionListener = new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError != null) {
+                    Log.e("TAG_Firebase", "Data could not be saved " + databaseError.getMessage());
+                } else {
+                    updateData();
+                    Toast.makeText(PurchaseReactionsActivity.this, "Post Successfully Added For Reaction", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+        /* Gey Random Generated Key for every new post*/
+        String postKey = database.getReference().push().getKey();
+        DatabaseReference databaseReference = database.getReference("Posts").child(postKey);
+
+        // Prepare Data for Post to upload on Firebase
+        Post post = new Post();
+        post.setUrl(postURL);
+        post.setProfileURL(sharedPrefrencesHelper.getProfileURL());
+        post.setUserKey(sharedPrefrencesHelper.getUserKey());
+        post.setPostType(reactionTypeSendedByIntent);
+        post.setViewsLimit(numberOfReactionsSendedByIntent);
+        post.setNumberOfViews("0");
+        post.setStatus("Progress");
+
+        // Save Data to Firebase
+        databaseReference.setValue(post, completionListener);
+
+    }
+
+
+    private void goToNextActivity() {
+        Intent intent = new Intent(PurchaseReactionsActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
