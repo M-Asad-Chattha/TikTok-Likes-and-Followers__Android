@@ -93,6 +93,7 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/image_view_type_2"
+                    android:onClick="onClickVideoVerify"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"

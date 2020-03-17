@@ -6,11 +6,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.asadchattha.tiktoklikesandfollowers.Adapters.PostAdapter;
 import com.asadchattha.tiktoklikesandfollowers.Helper.SharedPrefrencesHelper;
+import com.asadchattha.tiktoklikesandfollowers.Model.Post;
+import com.asadchattha.tiktoklikesandfollowers.Model.PostViewer;
 import com.asadchattha.tiktoklikesandfollowers.R;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -21,6 +28,11 @@ import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +46,14 @@ public class DoCommentActivity extends AppCompatActivity {
     private NativeAdLayout nativeAdLayout;
     private LinearLayout adView;
     private NativeAd nativeAd;
+
+    /*RecyclerView*/
+    private RecyclerView recyclerView;
+    private PostAdapter postAdapter;
+    private List<Post> posts;
+
+    /*Firebase*/
+    private FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +80,19 @@ public class DoCommentActivity extends AppCompatActivity {
 
         /*Load saved Data into Toolbar{link@SharedPrefrences}*/
         loadToolbarData();
+
+        /*RecyclerView Initialization*/
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        /*Post List initialization*/
+        posts = new ArrayList<>();
+
+        /*Intialize Firebase Instance*/
+        database = FirebaseDatabase.getInstance();
+
+        /*Load Firebase Posts Data in Recycler View*/
+        readPosts();
 
         AudienceNetworkAds.initialize(this);
         loadNativeAd();
@@ -164,6 +197,65 @@ public class DoCommentActivity extends AppCompatActivity {
 
         toolbarTitle.setText("Do Comment");
         diamond.setText(savedDiamondsInSharedPref);
+    }
+
+
+    /*Reading Data to Load in RecyclerView*/
+    private void readPosts() {
+        Toast.makeText(this, "Fetching Data...", Toast.LENGTH_SHORT).show();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                posts.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Post post = new Post();
+
+                    post = snapshot.getValue(Post.class);
+                    String userid = sharedPrefrencesHelper.getUserKey();
+
+                    if (!post.getUserKey().equals(userid)) {
+                        int numberOfViews = Integer.parseInt(post.getNumberOfViews());
+                        int viewsLimit = Integer.parseInt(post.getViewsLimit());
+
+                        if (post.getPostType().equals("Comments") && (numberOfViews < viewsLimit)) {
+                            if (snapshot.child("PostViewer").exists()) {
+                                for (DataSnapshot snapshot2 : snapshot.child("PostViewer").getChildren()) {
+                                    PostViewer postViewer = snapshot2.getValue(PostViewer.class);
+                                    String postuserId = postViewer.getUserId();
+                                    if (!userid.equals(postuserId)) {
+                                        posts.add(post);
+                                    }
+
+                                }
+                            } else {
+                                posts.add(post);
+                            }
+                        }
+                    }
+                }
+
+                postAdapter = new PostAdapter(DoCommentActivity.this, posts);
+
+                recyclerView.setAdapter(postAdapter);
+
+                /*if(!posts.isEmpty()){
+                    layoutPlaceHolder.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    userAdapter = new ConveyanceAdapter(FindConveyanceActivity.this, mUsers);
+                    recyclerView.setAdapter(userAdapter);
+                }
+                else {
+                    recyclerView.setVisibility(View.GONE);
+                    layoutPlaceHolder.setVisibility(View.VISIBLE);
+                }*/
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

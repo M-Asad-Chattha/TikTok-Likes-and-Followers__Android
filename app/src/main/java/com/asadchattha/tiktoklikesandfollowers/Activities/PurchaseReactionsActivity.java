@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -83,8 +84,6 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
         reactionTypeSendedByIntent = getIntent().getStringExtra("ReactionType");
         priceInDiamondsSendedByIntent = getIntent().getStringExtra("PriceInDiamonds");
         numberOfReactionsSendedByIntent = getIntent().getStringExtra("NumberOfReactions");
-
-        Toast.makeText(this, priceInDiamondsSendedByIntent + " Amount of diamonds collected for Reaction: " + numberOfReactionsSendedByIntent, Toast.LENGTH_SHORT).show();
 
 
         /*GUI Views Initializing*/
@@ -302,6 +301,7 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
         post.setViewsLimit(numberOfReactionsSendedByIntent);
         post.setNumberOfViews("0");
         post.setStatus("Progress");
+        post.setKey(postKey);
 
         // Save Data to Firebase
         databaseReference.setValue(post, completionListener);
@@ -313,5 +313,36 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
         Intent intent = new Intent(PurchaseReactionsActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void onClickVideoVerify(View view) {
+        validateURL(editText.getText().toString());
+
+    }
+
+
+    private void validateURL(String postURL) {
+
+        String patternStr = "https://vm.tiktok.com/+[a-zA-z0-9_-]+/";
+        Pattern pattern = Pattern.compile(patternStr);
+
+        // create a matcher that will match the given input against this pattern
+        Matcher matcher = pattern.matcher(postURL);
+
+        boolean matchFound = matcher.matches();
+
+        if (matchFound) {
+            /*Open Tiktok App*/
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(postURL));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "No Application Found to open this URL.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            showDialog();
+        }
     }
 }

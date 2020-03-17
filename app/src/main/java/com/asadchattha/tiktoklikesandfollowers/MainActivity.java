@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
                         String saevedKey = dataSnapshot1.getKey();
 
                         Log.i("READ", "Already existed user's key is: " + saevedKey);
-                        Toast.makeText(MainActivity.this, "User Already Exist", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "User Already Exist", Toast.LENGTH_SHORT).show();
 
                         readDataFromFirebase(saevedKey, mTiktokUserURL);
 

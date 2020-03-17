@@ -1,6 +1,7 @@
 package com.asadchattha.tiktoklikesandfollowers.Model;
 
 public class Post {
+    String key;
     private String url;
     private String profileURL;
     private String userKey;
@@ -10,6 +11,32 @@ public class Post {
     private String status;
 
     /*Getter Methods*/
+    public Post() {
+
+    }
+
+    public Post(String key, String url,
+                String profileURL, String userKey,
+                String postType, String numberOfViews,
+                String viewsLimit, String status) {
+        this.key = key;
+        this.url = url;
+        this.profileURL = profileURL;
+        this.userKey = userKey;
+        this.postType = postType;
+        this.numberOfViews = numberOfViews;
+        this.viewsLimit = viewsLimit;
+        this.status = status;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     public String getUrl() {
         return url;
     }

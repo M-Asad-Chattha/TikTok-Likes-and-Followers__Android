@@ -1,15 +1,20 @@
 package com.asadchattha.tiktoklikesandfollowers.Model;
 
 public class PostViewer {
-    private String profileURL;
+    private String userId;
 
-    public String getProfileURL() {
-        return profileURL;
+    public PostViewer() {
     }
 
-    public void setProfileURL(String profileURL) {
-        this.profileURL = profileURL;
+    public PostViewer(String userId) {
+        this.userId = userId;
     }
 
+    public String getUserId() {
+        return userId;
+    }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }
