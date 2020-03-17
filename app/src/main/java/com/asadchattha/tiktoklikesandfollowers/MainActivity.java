@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private InterstitialAd interstitialAd;
     private FirebaseDatabase database;
 
+    EditText editTextUserName;
+
     // Progress HUD
     private KProgressHUD hud;
 
@@ -86,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        editTextUserName = findViewById(R.id.edit_text_tiktokUserName);
+
         sharedPrefrencesHelper = new SharedPrefrencesHelper(MainActivity.this);
-        if (sharedPrefrencesHelper.isOpeningFirstTime()) {
-            sharedPrefrencesHelper.setIsOpeningFirstTime(false);
-        } else {
+        if (!sharedPrefrencesHelper.isOpeningFirstTime()) {
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
@@ -127,10 +129,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickNext(View view) {
-        EditText tiktokURL = findViewById(R.id.edit_text_tiktokURL);
-        String tiktokProfileURL = tiktokURL.getText().toString();
+        EditText etTiktokURL = findViewById(R.id.edit_text_tiktokURL);
+        EditText etTiktokUserName = findViewById(R.id.edit_text_tiktokUserName);
 
-        validateInput(tiktokProfileURL);
+        String tiktokProfileURL = etTiktokURL.getText().toString();
+        String tiktokUserName = etTiktokUserName.getText().toString();
+
+        validateInput(tiktokProfileURL, tiktokUserName);
 
     }
 
@@ -159,13 +164,13 @@ public class MainActivity extends AppCompatActivity {
         User user = new User();
         user.setDiamond("0");
         user.setProfileURL(url);
-        user.setUserName("@userName");
+        user.setUserName(editTextUserName.getText().toString());
 
         // Save Data to Firebase
         databaseReference.setValue(user, completionListener);
 
         // Save Data to SharedPref
-        saveDataToSharedPref(url, userKey, "0");
+        saveDataToSharedPref(userKey, url, editTextUserName.getText().toString(), "0");
     }
 
     @Override
@@ -178,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void validateInput(String tiktokURL) {
+    private void validateInput(String tiktokURL, String titktokUserName) {
 
         String patternStr = "https://vm.tiktok.com/+[a-zA-z0-9_-]+/";
 //        "[a-zA-Z0-9._-]+@hotmail.com"
@@ -190,12 +195,10 @@ public class MainActivity extends AppCompatActivity {
 
         boolean matchFound = matcher.matches();
 
-        if (matchFound) {
+        if (matchFound && !titktokUserName.isEmpty()) {
             isUserExist(tiktokURL);
             hud = KProgressHUD.create(MainActivity.this)
                     .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-//                    .setLabel("Please wait")
-//                    .setDetailsLabel("Downloading data")
                     .setCancellable(false)
                     .setAnimationSpeed(2)
                     .setDimAmount(0.5f)
@@ -207,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Invalid TikTok URL.")
+        builder.setMessage("Invalid TikTok inputs.")
                 .setTitle("Try Again");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -218,11 +221,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void saveDataToSharedPref(String tiktokUserKey, String tiktokURL, String diamonds) {
+    private void saveDataToSharedPref(String tiktokUserKey, String tiktokURL, String tiktokUserName, String diamonds) {
         SharedPreferences sharedpreferences = getSharedPreferences("TikTokLikesandShares", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString("userkey", tiktokUserKey);
         editor.putString("profileURL", tiktokURL);
+        editor.putString("userName", tiktokURL);
         editor.putString("diamonds", diamonds);
         editor.apply();
 
@@ -272,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
 
-                saveDataToSharedPref(userKey, tiktokURL, user.getDiamond());
+                saveDataToSharedPref(userKey, tiktokURL, editTextUserName.getText().toString(),user.getDiamond());
                 goToNextActivity();
                 Log.i("READ", "Saved Diamonds on Firebase are: " + user.getDiamond());
             }
@@ -287,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
     private void goToNextActivity() {
         if (hud.isShowing()) {
             hud.dismiss();
+            sharedPrefrencesHelper.setIsOpeningFirstTime(false);
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
