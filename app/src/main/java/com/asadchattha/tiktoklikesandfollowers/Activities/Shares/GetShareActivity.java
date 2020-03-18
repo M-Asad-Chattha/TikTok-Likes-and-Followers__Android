@@ -45,7 +45,7 @@ public class GetShareActivity extends AppCompatActivity {
         follower.add(new Follower("Get 500 real shares in 900 diamonds.", "Get 500 Shares", 900, 500));
         follower.add(new Follower("Get 1000 real shares in 1600 diamonds.", "Get 1000 Shares", 1600, 1000));
 
-        GetFollowerAdapter itemsAdapter = new GetFollowerAdapter(this, follower, R.drawable.ic_get_share);
+        GetFollowerAdapter itemsAdapter = new GetFollowerAdapter(this, follower, R.drawable.ic_share);
 
         //Access LinearLayout to add subView into that.
         ListView listView = findViewById(R.id.list);

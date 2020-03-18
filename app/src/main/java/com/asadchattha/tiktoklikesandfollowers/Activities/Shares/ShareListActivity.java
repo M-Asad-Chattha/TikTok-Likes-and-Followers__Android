@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +23,7 @@ import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,8 @@ public class ShareListActivity extends AppCompatActivity {
     private NativeAdLayout nativeAdLayout;
     private LinearLayout adView;
     private NativeAd nativeAd;
+
+    private KProgressHUD hud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,8 @@ public class ShareListActivity extends AppCompatActivity {
 
         /*Load saved Data into Toolbar{link@SharedPrefrences}*/
         loadToolbarData();
+
+        showDialog();
 
         AudienceNetworkAds.initialize(this);
         loadNativeAd();
@@ -94,6 +100,7 @@ public class ShareListActivity extends AppCompatActivity {
                 }
                 // Inflate Native Ad into Container
                 inflateAd(nativeAd);
+                dismissDialog();
             }
 
             @Override
@@ -174,6 +181,24 @@ public class ShareListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadToolbarData();
+    }
+
+
+    private void showDialog() {
+        hud = KProgressHUD.create(ShareListActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+    }
+
+
+    private void dismissDialog() {
+        if (hud.isShowing()) {
+            hud.dismiss();
+            Toast.makeText(this, "No Shares List Found.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

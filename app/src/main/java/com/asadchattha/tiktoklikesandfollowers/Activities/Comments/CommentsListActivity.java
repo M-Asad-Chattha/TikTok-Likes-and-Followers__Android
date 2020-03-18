@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.asadchattha.tiktoklikesandfollowers.Activities.Shares.ShareListActivity;
 import com.asadchattha.tiktoklikesandfollowers.Helper.SharedPrefrencesHelper;
 import com.asadchattha.tiktoklikesandfollowers.R;
 import com.facebook.ads.Ad;
@@ -23,6 +24,7 @@ import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,8 @@ public class CommentsListActivity extends AppCompatActivity {
     private NativeAdLayout nativeAdLayout;
     private LinearLayout adView;
     private NativeAd nativeAd;
+
+    private KProgressHUD hud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +66,7 @@ public class CommentsListActivity extends AppCompatActivity {
         /*Load saved Data into Toolbar{link@SharedPrefrences}*/
         loadToolbarData();
 
-        Toast.makeText(this, "No Comments List Found", Toast.LENGTH_SHORT).show();
+        showDialog();
 
         AudienceNetworkAds.initialize(this);
         loadNativeAd();
@@ -95,6 +99,7 @@ public class CommentsListActivity extends AppCompatActivity {
                 }
                 // Inflate Native Ad into Container
                 inflateAd(nativeAd);
+                dismissDialog();
             }
 
             @Override
@@ -175,6 +180,24 @@ public class CommentsListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadToolbarData();
+    }
+
+
+    private void showDialog() {
+        hud = KProgressHUD.create(CommentsListActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+    }
+
+
+    private void dismissDialog() {
+        if (hud.isShowing()) {
+            hud.dismiss();
+            Toast.makeText(this, "No Comments List Found.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
