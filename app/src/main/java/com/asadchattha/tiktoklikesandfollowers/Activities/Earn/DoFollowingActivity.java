@@ -33,10 +33,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DoFollowingActivity extends AppCompatActivity {
 
@@ -55,6 +59,7 @@ public class DoFollowingActivity extends AppCompatActivity {
 
     /*Firebase*/
     private FirebaseDatabase database;
+    private KProgressHUD progressHUD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +99,12 @@ public class DoFollowingActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         /*Load Firebase Posts Data in Recycler View*/
+        progressHUD = KProgressHUD.create(DoFollowingActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
         readPosts();
 
 
@@ -206,7 +217,6 @@ public class DoFollowingActivity extends AppCompatActivity {
 
     /*Reading Data to Load in RecyclerView*/
     private void readPosts() {
-        Toast.makeText(this, "Fetching Data...", Toast.LENGTH_SHORT).show();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -222,7 +232,9 @@ public class DoFollowingActivity extends AppCompatActivity {
                         int numberOfViews = Integer.parseInt(post.getNumberOfViews());
                         int viewsLimit = Integer.parseInt(post.getViewsLimit());
 
-                        if (post.getPostType().equals("Followers") && (numberOfViews < viewsLimit)) {
+                        if (post.getPostType().equals("Followers") &&
+                                (numberOfViews < viewsLimit) &&
+                                post.getStatus().equals("Progress")) {
                             if (snapshot.child("PostViewer").exists()) {
                                 for (DataSnapshot snapshot2 : snapshot.child("PostViewer").getChildren()) {
                                     PostViewer postViewer = snapshot2.getValue(PostViewer.class);
@@ -235,10 +247,13 @@ public class DoFollowingActivity extends AppCompatActivity {
                             } else {
                                 posts.add(post);
                             }
+                        } else if (numberOfViews == viewsLimit) {
+                            updatePostStatus(post.getKey());
                         }
                     }
                 }
 
+                progressHUD.dismiss();
                 postAdapterFollower = new PostAdapterFollower(DoFollowingActivity.this, posts);
 
                 recyclerView.setAdapter(postAdapterFollower);
@@ -254,6 +269,25 @@ public class DoFollowingActivity extends AppCompatActivity {
                     recyclerView.setVisibility(View.GONE);
                     layoutPlaceHolder.setVisibility(View.VISIBLE);
                 }*/
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void updatePostStatus(final String key) {
+        final DatabaseReference databaseReference = database.getReference("Posts");
+        Query query = databaseReference.child(key);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Map dataMap = new HashMap();
+                dataMap.put("status", "completed");
+                databaseReference.child(key).updateChildren(dataMap);
             }
 
             @Override

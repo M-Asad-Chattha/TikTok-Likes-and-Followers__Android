@@ -1,6 +1,9 @@
 package com.asadchattha.tiktoklikesandfollowers.Activities.Designing;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -54,6 +57,11 @@ public class PopupAdActivity extends AppCompatActivity {
         params.x = 0;
         params.y = -20;
         getWindow().setAttributes(params);
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }*/
 
 
         AudienceNetworkAds.initialize(this);
@@ -156,8 +164,23 @@ public class PopupAdActivity extends AppCompatActivity {
     }
 
     public void onClickClose(View view) {
-        Intent intent = new Intent(PopupAdActivity.this, ScratchAndWinActivity.class);
-        startActivity(intent);
-        finish();
+        showDialog();
+    }
+
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Woohoo! You have won " + getIntent().getStringExtra("Reward") + " Diamonds")
+                .setTitle("Congratulations");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(PopupAdActivity.this, ScratchAndWinActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.create().show();
     }
 }

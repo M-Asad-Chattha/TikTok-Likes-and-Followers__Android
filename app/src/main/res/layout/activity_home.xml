@@ -33,6 +33,8 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentBottom="true"
         app:tabBackground="@drawable/tab_background"
+        app:tabIconTint="@color/tabselected"
+        app:tabIndicatorColor="@color/colorPrimary"
         app:tabMode="fixed" />
 
 

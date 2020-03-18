@@ -102,8 +102,6 @@ public class PopupActivity extends AppCompatActivity {
         scratchImageView.setRevealListener(new ScratchImageView.IRevealListener() {
             @Override
             public void onRevealed(ScratchImageView iv) {
-//                Toast.makeText(PopupActivity.this, "Scrateched", Toast.LENGTH_SHORT).show();
-                Log.i("Scratch", "Scratched Successfully");
                 if (random == LUCKY_NUMBER) {
                     showDialogSuccess();
                     updateSharedPref();
@@ -114,7 +112,9 @@ public class PopupActivity extends AppCompatActivity {
 
             @Override
             public void onRevealPercentChangedListener(ScratchImageView siv, float percent) {
+                if (percent > 0.7) {
 
+                }
             }
         });
 
@@ -129,9 +129,10 @@ public class PopupActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                interstitialAd.loadAd();
                 Intent intent = new Intent(PopupActivity.this, ScratchAndWinActivity.class);
                 startActivity(intent);
-                interstitialAd.loadAd();
+                finish();
 
             }
         });
@@ -147,8 +148,8 @@ public class PopupActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(PopupActivity.this, PopupAdActivity.class);
+                intent.putExtra("Reward", getIntent().getStringExtra("Reward"));
                 startActivity(intent);
-//                interstitialAd.loadAd();
 
             }
         });

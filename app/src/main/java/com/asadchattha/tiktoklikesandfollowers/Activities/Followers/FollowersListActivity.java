@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asadchattha.tiktoklikesandfollowers.Activities.Earn.RateUsActivity;
+import com.asadchattha.tiktoklikesandfollowers.Helper.ProgressHUDHelper;
 import com.asadchattha.tiktoklikesandfollowers.Helper.SharedPrefrencesHelper;
 import com.asadchattha.tiktoklikesandfollowers.R;
 import com.facebook.ads.Ad;
@@ -36,12 +38,15 @@ public class FollowersListActivity extends AppCompatActivity {
     private LinearLayout adView;
     private NativeAd nativeAd;
 
+    ProgressHUDHelper progressHUDHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_followers_list);
 
-
+        progressHUDHelper = new ProgressHUDHelper(FollowersListActivity.this);
+        progressHUDHelper.showProgressHUD();
 
         /*SharedPref Helper*/
         sharedPrefrencesHelper = new SharedPrefrencesHelper(FollowersListActivity.this);
@@ -94,6 +99,8 @@ public class FollowersListActivity extends AppCompatActivity {
                 }
                 // Inflate Native Ad into Container
                 inflateAd(nativeAd);
+                progressHUDHelper.hideProgressHUD();
+                Toast.makeText(FollowersListActivity.this, "No Follower List Found", Toast.LENGTH_SHORT).show();
             }
 
             @Override

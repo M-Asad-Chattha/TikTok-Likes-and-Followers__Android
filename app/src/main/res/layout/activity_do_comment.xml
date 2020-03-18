@@ -27,6 +27,7 @@
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground" />
 
+
             <!-- Native Ad Banner -->
             <com.facebook.ads.NativeAdLayout
                 android:id="@+id/native_ad_container"

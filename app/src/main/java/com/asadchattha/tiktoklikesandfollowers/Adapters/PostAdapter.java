@@ -82,9 +82,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             if (intent.resolveActivity(mContext.getPackageManager()) != null) {
                                 updateDatabase();
+                                updatePostViews(posts.get(position).getKey(), posts.get(position).getNumberOfViews());
                                 mContext.startActivity(intent);
                             } else {
-                                Toast.makeText(mContext, "No Application FOund to open this URL.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "No Application Found to open this URL.", Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -103,9 +104,33 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     }
 
+    private void updatePostViews(final String key, final String numberOfViews) {
+
+        final DatabaseReference databaseReference = database.getReference("Posts");
+        Query query = databaseReference.child(key);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int mNumberOfViews = Integer.parseInt(numberOfViews);
+                mNumberOfViews++;
+
+                Map dataMap = new HashMap();
+                dataMap.put("numberOfViews", Integer.toString(mNumberOfViews));
+                databaseReference.child(key).updateChildren(dataMap);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
     private void updateDatabase() {
         int savedDiamonds = Integer.parseInt(sharedPrefrencesHelper.getDiamonds());
         savedDiamonds += 5;
+
 
         /*UPDATE SharedPrefrences*/
         sharedPrefrencesHelper.updateDiamonds(Integer.toString(savedDiamonds));
@@ -124,17 +149,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView url;
-        /*public TextView profileUrl;
-        public TextView status;
-        public CircularImageView imageView;*/
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             url = itemView.findViewById(R.id.url);
-//            profileUrl = itemView.findViewById(R.id.profileUrl);
-//            imageView = itemView.findViewById(R.id.profile_image);
-//            status = itemView.findViewById(R.id.status);
         }
     }
 

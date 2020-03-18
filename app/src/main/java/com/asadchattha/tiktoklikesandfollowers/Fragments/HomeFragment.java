@@ -44,10 +44,11 @@ public class HomeFragment extends Fragment {
 
 
         AudienceNetworkAds.initialize(getContext());
-        bannerAdView = new AdView(getContext(), "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
+        bannerAdView = new AdView(getContext(), getString(R.string.banner_ad_id), AdSize.BANNER_HEIGHT_50);
         LinearLayout adContainer = root.findViewById(R.id.banner_container_home);
         adContainer.addView(bannerAdView);
         bannerAdView.loadAd();
+        AdSettings.setTestMode(true);
 
 //        readFirebaseData();
         updateProfileDetail(root);

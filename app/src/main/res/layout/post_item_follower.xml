@@ -30,7 +30,7 @@
         android:maxLines="1"
         android:text="https://vm.tiktok.com/111/"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="18sp" />
 
     <LinearLayout

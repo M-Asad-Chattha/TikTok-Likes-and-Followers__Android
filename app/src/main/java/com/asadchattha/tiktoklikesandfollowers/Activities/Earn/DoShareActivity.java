@@ -34,9 +34,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DoShareActivity extends AppCompatActivity {
 
@@ -55,6 +58,7 @@ public class DoShareActivity extends AppCompatActivity {
 
     /*Firebase*/
     private FirebaseDatabase database;
+    private KProgressHUD progressHUD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +98,12 @@ public class DoShareActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         /*Load Firebase Posts Data in Recycler View*/
+        progressHUD = KProgressHUD.create(DoShareActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
         readPosts();
 
 
@@ -203,14 +213,9 @@ public class DoShareActivity extends AppCompatActivity {
         diamond.setText(savedDiamondsInSharedPref);
     }
 
-    /*Reading Data to Load in RecyclerView*/
     private void readPosts() {
-        Toast.makeText(this, "Fetching Data...", Toast.LENGTH_SHORT).show();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-
-        /*Query For */
-        Query query = reference.orderByChild("postType").equalTo("Shares");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 posts.clear();
@@ -224,7 +229,9 @@ public class DoShareActivity extends AppCompatActivity {
                         int numberOfViews = Integer.parseInt(post.getNumberOfViews());
                         int viewsLimit = Integer.parseInt(post.getViewsLimit());
 
-                        if ((numberOfViews < viewsLimit)) {
+                        if (post.getPostType().equals("Shares") &&
+                                (numberOfViews < viewsLimit) &&
+                                post.getStatus().equals("Progress")) {
                             if (snapshot.child("PostViewer").exists()) {
                                 for (DataSnapshot snapshot2 : snapshot.child("PostViewer").getChildren()) {
                                     PostViewer postViewer = snapshot2.getValue(PostViewer.class);
@@ -237,60 +244,18 @@ public class DoShareActivity extends AppCompatActivity {
                             } else {
                                 posts.add(post);
                             }
+                        } else if (numberOfViews == viewsLimit) {
+                            updatePostStatus(post.getKey());
                         }
                     }
                 }
 
-                postAdapter = new PostAdapter(DoShareActivity.this, posts);
-
-                recyclerView.setAdapter(postAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-        /*reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                posts.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Post post = new Post();
-
-                    post = snapshot.getValue(Post.class);
-                    String userid = sharedPrefrencesHelper.getUserKey();
-
-                    if (!post.getUserKey().equals(userid)) {
-                        int numberOfViews = Integer.parseInt(post.getNumberOfViews());
-                        int viewsLimit = Integer.parseInt(post.getViewsLimit());
-
-                        if (post.getPostType().equals("Shares") && (numberOfViews < viewsLimit)) {
-                            if (snapshot.child("PostViewer").exists()) {
-                                for (DataSnapshot snapshot2 : snapshot.child("PostViewer").getChildren()) {
-                                    PostViewer postViewer = snapshot2.getValue(PostViewer.class);
-                                    String postuserId = postViewer.getUserId();
-                                    if (!userid.equals(postuserId)) {
-                                        posts.add(post);
-                                    }
-
-                                }
-                            } else {
-                                posts.add(post);
-                            }
-                        }
-                    }
-                }
-
+                progressHUD.dismiss();
                 postAdapter = new PostAdapter(DoShareActivity.this, posts);
 
                 recyclerView.setAdapter(postAdapter);
 
-                *//*if(!posts.isEmpty()){
+                /*if(!posts.isEmpty()){
                     layoutPlaceHolder.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
                     userAdapter = new ConveyanceAdapter(FindConveyanceActivity.this, mUsers);
@@ -299,16 +264,140 @@ public class DoShareActivity extends AppCompatActivity {
                 else {
                     recyclerView.setVisibility(View.GONE);
                     layoutPlaceHolder.setVisibility(View.VISIBLE);
-                }*//*
+                }*/
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
     }
 
+    /*Reading Data to Load in RecyclerView*/
+//    private void readPosts() {
+//        Toast.makeText(this, "Fetching Data...", Toast.LENGTH_SHORT).show();
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+//
+//        /*Query For */
+//        Query query = reference.orderByChild("postType").equalTo("Shares");
+//        query.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                posts.clear();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    Post post = new Post();
+//
+//                    post = snapshot.getValue(Post.class);
+//                    String userid = sharedPrefrencesHelper.getUserKey();
+//
+//                    if (!post.getUserKey().equals(userid)) {
+//                        int numberOfViews = Integer.parseInt(post.getNumberOfViews());
+//                        int viewsLimit = Integer.parseInt(post.getViewsLimit());
+//
+//                        if ((numberOfViews < viewsLimit)) {
+//                            if (snapshot.child("PostViewer").exists()) {
+//                                for (DataSnapshot snapshot2 : snapshot.child("PostViewer").getChildren()) {
+//                                    PostViewer postViewer = snapshot2.getValue(PostViewer.class);
+//                                    String postuserId = postViewer.getUserId();
+//                                    if (!userid.equals(postuserId)) {
+//                                        posts.add(post);
+//                                    }
+//
+//                                }
+//                            } else {
+//                                posts.add(post);
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                postAdapter = new PostAdapter(DoShareActivity.this, posts);
+//
+//                recyclerView.setAdapter(postAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//
+//
+//
+//        /*reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                posts.clear();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    Post post = new Post();
+//
+//                    post = snapshot.getValue(Post.class);
+//                    String userid = sharedPrefrencesHelper.getUserKey();
+//
+//                    if (!post.getUserKey().equals(userid)) {
+//                        int numberOfViews = Integer.parseInt(post.getNumberOfViews());
+//                        int viewsLimit = Integer.parseInt(post.getViewsLimit());
+//
+//                        if (post.getPostType().equals("Shares") && (numberOfViews < viewsLimit)) {
+//                            if (snapshot.child("PostViewer").exists()) {
+//                                for (DataSnapshot snapshot2 : snapshot.child("PostViewer").getChildren()) {
+//                                    PostViewer postViewer = snapshot2.getValue(PostViewer.class);
+//                                    String postuserId = postViewer.getUserId();
+//                                    if (!userid.equals(postuserId)) {
+//                                        posts.add(post);
+//                                    }
+//
+//                                }
+//                            } else {
+//                                posts.add(post);
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                postAdapter = new PostAdapter(DoShareActivity.this, posts);
+//
+//                recyclerView.setAdapter(postAdapter);
+//
+//                *//*if(!posts.isEmpty()){
+//                    layoutPlaceHolder.setVisibility(View.GONE);
+//                    recyclerView.setVisibility(View.VISIBLE);
+//                    userAdapter = new ConveyanceAdapter(FindConveyanceActivity.this, mUsers);
+//                    recyclerView.setAdapter(userAdapter);
+//                }
+//                else {
+//                    recyclerView.setVisibility(View.GONE);
+//                    layoutPlaceHolder.setVisibility(View.VISIBLE);
+//                }*//*
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });*/
+//    }
+
+    private void updatePostStatus(final String key) {
+        final DatabaseReference databaseReference = database.getReference("Posts");
+        Query query = databaseReference.child(key);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Map dataMap = new HashMap();
+                dataMap.put("status", "completed");
+                databaseReference.child(key).updateChildren(dataMap);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     @Override
     protected void onResume() {

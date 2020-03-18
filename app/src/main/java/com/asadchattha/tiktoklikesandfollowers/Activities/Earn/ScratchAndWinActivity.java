@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.asadchattha.tiktoklikesandfollowers.Helper.SharedPrefrencesHelper;
+import com.asadchattha.tiktoklikesandfollowers.HomeActivity;
+import com.asadchattha.tiktoklikesandfollowers.MainActivity;
 import com.asadchattha.tiktoklikesandfollowers.R;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -23,8 +25,6 @@ import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
-import com.facebook.ads.RewardedVideoAd;
-import com.facebook.ads.RewardedVideoAdListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class ScratchAndWinActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Your code
-                finish();
+                onBackPressed();
             }
         });
 
@@ -198,6 +198,14 @@ public class ScratchAndWinActivity extends AppCompatActivity {
         }
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(ScratchAndWinActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 

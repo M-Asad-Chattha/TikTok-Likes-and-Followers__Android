@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,10 +31,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DoCommentActivity extends AppCompatActivity {
 
@@ -54,6 +57,7 @@ public class DoCommentActivity extends AppCompatActivity {
 
     /*Firebase*/
     private FirebaseDatabase database;
+    private KProgressHUD progressHUD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +96,12 @@ public class DoCommentActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         /*Load Firebase Posts Data in Recycler View*/
+        progressHUD = KProgressHUD.create(DoCommentActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
         readPosts();
 
         AudienceNetworkAds.initialize(this);
@@ -202,7 +212,6 @@ public class DoCommentActivity extends AppCompatActivity {
 
     /*Reading Data to Load in RecyclerView*/
     private void readPosts() {
-        Toast.makeText(this, "Fetching Data...", Toast.LENGTH_SHORT).show();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -218,7 +227,9 @@ public class DoCommentActivity extends AppCompatActivity {
                         int numberOfViews = Integer.parseInt(post.getNumberOfViews());
                         int viewsLimit = Integer.parseInt(post.getViewsLimit());
 
-                        if (post.getPostType().equals("Comments") && (numberOfViews < viewsLimit)) {
+                        if (post.getPostType().equals("Comments") &&
+                                (numberOfViews < viewsLimit) &&
+                                post.getStatus().equals("Progress")) {
                             if (snapshot.child("PostViewer").exists()) {
                                 for (DataSnapshot snapshot2 : snapshot.child("PostViewer").getChildren()) {
                                     PostViewer postViewer = snapshot2.getValue(PostViewer.class);
@@ -231,10 +242,12 @@ public class DoCommentActivity extends AppCompatActivity {
                             } else {
                                 posts.add(post);
                             }
+                        } else if (numberOfViews == viewsLimit) {
+                            updatePostStatus(post.getKey());
                         }
                     }
                 }
-
+                progressHUD.dismiss();
                 postAdapter = new PostAdapter(DoCommentActivity.this, posts);
 
                 recyclerView.setAdapter(postAdapter);
@@ -249,6 +262,25 @@ public class DoCommentActivity extends AppCompatActivity {
                     recyclerView.setVisibility(View.GONE);
                     layoutPlaceHolder.setVisibility(View.VISIBLE);
                 }*/
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void updatePostStatus(final String key) {
+        final DatabaseReference databaseReference = database.getReference("Posts");
+        Query query = databaseReference.child(key);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Map dataMap = new HashMap();
+                dataMap.put("status", "completed");
+                databaseReference.child(key).updateChildren(dataMap);
             }
 
             @Override

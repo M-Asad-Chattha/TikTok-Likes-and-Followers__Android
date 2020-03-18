@@ -80,6 +80,8 @@ public class PostAdapterFollower extends RecyclerView.Adapter<PostAdapterFollowe
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             if (intent.resolveActivity(mContext.getPackageManager()) != null) {
                                 updateDatabase();
+                                updatePostViews(posts.get(position).getKey(), posts.get(position).getNumberOfViews());
+
                                 mContext.startActivity(intent);
                             } else {
                                 Toast.makeText(mContext, "No Application Found to open this URL.", Toast.LENGTH_SHORT).show();
@@ -95,6 +97,29 @@ public class PostAdapterFollower extends RecyclerView.Adapter<PostAdapterFollowe
                     }
                 });
 
+
+            }
+        });
+
+    }
+
+    private void updatePostViews(final String key, final String numberOfViews) {
+
+        final DatabaseReference databaseReference = database.getReference("Posts");
+        Query query = databaseReference.child(key);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int mNumberOfViews = Integer.parseInt(numberOfViews);
+                mNumberOfViews++;
+
+                Map dataMap = new HashMap();
+                dataMap.put("numberOfViews", Integer.toString(mNumberOfViews));
+                databaseReference.child(key).updateChildren(dataMap);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

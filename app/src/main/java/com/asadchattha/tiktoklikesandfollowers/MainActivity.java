@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize the Facebook Adds Audience Network SDK
         AudienceNetworkAds.initialize(this);
 
-        interstitialAd = new InterstitialAd(this, "YOUR_PLACEMENT_ID"); //2440420156058066_2444457038987711
+        interstitialAd = new InterstitialAd(this, "IMG_16_9_APP_INSTALL#"); //2440420156058066_2444457038987711
         interstitialAd.setAdListener(interstitialAdListener);
 
 
@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         // For auto play video ads, it's recommended to load the ad
         // at least 30 seconds before it is shown
         interstitialAd.loadAd();
+        AdSettings.setTestMode(true);
 
         /** Banner Ad */
 
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
         // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
 
-        bannerAdView = new AdView(this, "YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
+        bannerAdView = new AdView(this, "IMG_16_9_APP_INSTALL#", AdSize.BANNER_HEIGHT_50);
 //        2440420156058066_2440446256055456
         // Find the Ad Container
         LinearLayout adContainer = findViewById(R.id.banner_container);

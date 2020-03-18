@@ -9,6 +9,7 @@
     <color name="colorTransparent">#00F70101</color>
 
     <color name="colorCardBackground">#DF2C5D</color>
+    <color name="colorWhite">#FFF</color>
 
     <!--<color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>

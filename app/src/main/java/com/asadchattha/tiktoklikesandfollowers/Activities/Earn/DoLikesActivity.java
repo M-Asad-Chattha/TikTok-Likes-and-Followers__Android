@@ -34,10 +34,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DoLikesActivity extends AppCompatActivity {
 
@@ -56,6 +60,7 @@ public class DoLikesActivity extends AppCompatActivity {
 
     /*Firebase*/
     private FirebaseDatabase database;
+    private KProgressHUD progressHUD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +99,12 @@ public class DoLikesActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         /*Load Firebase Posts Data in Recycler View*/
+        progressHUD = KProgressHUD.create(DoLikesActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
         readPosts();
 
         AudienceNetworkAds.initialize(this);
@@ -206,7 +217,6 @@ public class DoLikesActivity extends AppCompatActivity {
 
     /*Reading Data to Load in RecyclerView*/
     private void readPosts() {
-        Toast.makeText(this, "Fetching Data...", Toast.LENGTH_SHORT).show();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -222,7 +232,9 @@ public class DoLikesActivity extends AppCompatActivity {
                         int numberOfViews = Integer.parseInt(post.getNumberOfViews());
                         int viewsLimit = Integer.parseInt(post.getViewsLimit());
 
-                        if (post.getPostType().equals("Likes") && (numberOfViews < viewsLimit)) {
+                        if (post.getPostType().equals("Likes") &&
+                                (numberOfViews < viewsLimit) &&
+                                post.getStatus().equals("Progress")) {
                             if (snapshot.child("PostViewer").exists()) {
                                 for (DataSnapshot snapshot2 : snapshot.child("PostViewer").getChildren()) {
                                     PostViewer postViewer = snapshot2.getValue(PostViewer.class);
@@ -235,10 +247,13 @@ public class DoLikesActivity extends AppCompatActivity {
                             } else {
                                 posts.add(post);
                             }
+                        } else if (numberOfViews == viewsLimit) {
+                            updatePostStatus(post.getKey());
                         }
                     }
                 }
 
+                progressHUD.dismiss();
                 postAdapter = new PostAdapter(DoLikesActivity.this, posts);
 
                 recyclerView.setAdapter(postAdapter);
@@ -262,7 +277,24 @@ public class DoLikesActivity extends AppCompatActivity {
         });
     }
 
+    private void updatePostStatus(final String key) {
+        final DatabaseReference databaseReference = database.getReference("Posts");
+        Query query = databaseReference.child(key);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                Map dataMap = new HashMap();
+                dataMap.put("status", "completed");
+                databaseReference.child(key).updateChildren(dataMap);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     @Override
     protected void onResume() {
