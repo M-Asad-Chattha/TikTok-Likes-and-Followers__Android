@@ -29,12 +29,12 @@ public class HomeActivity extends AppCompatActivity {
     private SharedPrefrencesHelper sharedPrefrencesHelper;
 
     private int[] tabIcons = {
-            R.drawable.ic_home,
-            R.drawable.ic_diamond,
-            R.drawable.ic_follow,
-            R.drawable.ic_heart,
-            R.drawable.ic_comment,
-            R.drawable.ic_share
+            R.drawable.ic_tab_home,
+            R.drawable.ic_tab_diamond,
+            R.drawable.ic_tab_man,
+            R.drawable.ic_tab_heart,
+            R.drawable.ic_tab_comment,
+            R.drawable.ic_tab_share
     };
 
     @Override

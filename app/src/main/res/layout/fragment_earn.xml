@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@drawable/background"
         android:orientation="vertical"
         android:paddingBottom="20dp">
 
@@ -19,13 +18,17 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_watchVideos"
             style="@style/card_widget_earnFragment"
-            app:contentPadding="16dp">
+            app:contentPaddingBottom="16dp"
+            app:contentPaddingLeft="6dp"
+            app:contentPaddingRight="16dp"
+            app:contentPaddingTop="16dp">
+
 
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
                 <ImageView
                     style="@style/image_view_insideCardWidget_earnFragment"
-                    android:src="@drawable/ic_watch_videos" />
+                    android:src="@drawable/ic_watch_video" />
 
                 <TextView
                     style="@style/text_view_insideCardWidget_earnFragment"
@@ -39,13 +42,17 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_scratchAndWin"
             style="@style/card_widget_earnFragment"
-            app:contentPadding="16dp">
+            app:contentPaddingBottom="16dp"
+            app:contentPaddingLeft="6dp"
+            app:contentPaddingRight="16dp"
+            app:contentPaddingTop="16dp">
+
 
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
                 <ImageView
                     style="@style/image_view_insideCardWidget_earnFragment"
-                    android:src="@drawable/ic_reward" />
+                    android:src="@drawable/ic_scratch_win" />
 
                 <TextView
                     style="@style/text_view_insideCardWidget_earnFragment"
@@ -68,13 +75,17 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_doLikes"
             style="@style/card_widget_earnFragment"
-            app:contentPadding="16dp">
+            app:contentPaddingBottom="16dp"
+            app:contentPaddingLeft="6dp"
+            app:contentPaddingRight="16dp"
+            app:contentPaddingTop="16dp">
+
 
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
                 <ImageView
                     style="@style/image_view_insideCardWidget_earnFragment"
-                    android:src="@drawable/ic_like_list" />
+                    android:src="@drawable/ic_do_likes" />
 
                 <TextView
                     style="@style/text_view_insideCardWidget_earnFragment"
@@ -88,7 +99,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_doFollowing"
             style="@style/card_widget_earnFragment"
-            app:contentPadding="16dp">
+            app:contentPaddingBottom="16dp"
+            app:contentPaddingLeft="6dp"
+            app:contentPaddingRight="16dp"
+            app:contentPaddingTop="16dp">
+
 
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
@@ -108,7 +123,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_doComment"
             style="@style/card_widget_earnFragment"
-            app:contentPadding="16dp">
+            app:contentPaddingBottom="16dp"
+            app:contentPaddingLeft="6dp"
+            app:contentPaddingRight="16dp"
+            app:contentPaddingTop="16dp">
+
 
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
@@ -128,7 +147,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_doShare"
             style="@style/card_widget_earnFragment"
-            app:contentPadding="16dp">
+            app:contentPaddingBottom="16dp"
+            app:contentPaddingLeft="6dp"
+            app:contentPaddingRight="16dp"
+            app:contentPaddingTop="16dp">
+
 
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
@@ -145,10 +168,14 @@
 
 
         <!-- Rate us Card -->
-        <androidx.cardview.widget.CardView
+        <!--<androidx.cardview.widget.CardView
             android:id="@+id/card_rateUs"
             style="@style/card_widget_earnFragment"
-            app:contentPadding="16dp">
+            app:contentPaddingLeft="6dp"
+            app:contentPaddingRight="16dp"
+            app:contentPaddingTop="16dp"
+            app:contentPaddingBottom="16dp">
+
 
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
@@ -161,7 +188,7 @@
                     android:text="Rate Us" />
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>-->
 
         <!-- Native Ad Banner_1 -->
         <com.facebook.ads.NativeAdLayout

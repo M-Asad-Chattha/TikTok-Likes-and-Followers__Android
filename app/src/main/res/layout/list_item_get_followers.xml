@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:minHeight="82dp"
     android:padding="10dp">
 
@@ -12,6 +13,7 @@
         android:id="@+id/text_view_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
         tools:text="Get 20 real followers in 60 diamonds." />
 
@@ -22,7 +24,7 @@
         android:layout_below="@id/text_view_description"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="@color/colorCardBackground"
         app:cardCornerRadius="6dp"
         app:contentPaddingBottom="16dp"
         app:contentPaddingLeft="16dp"

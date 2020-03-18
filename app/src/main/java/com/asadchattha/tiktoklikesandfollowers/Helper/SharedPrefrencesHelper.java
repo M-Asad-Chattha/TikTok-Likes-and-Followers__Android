@@ -12,6 +12,7 @@ public class SharedPrefrencesHelper {
     private String diamonds;
     private Context mContext;
     private String profileURL;
+    private String userName;
 
 
     public SharedPrefrencesHelper(Context context) {
@@ -35,6 +36,10 @@ public class SharedPrefrencesHelper {
         return profileURL;
     }
 
+    public String getUserName() {
+        userName = sharedpreferences.getString("userName", null);
+        return userName;
+    }
 
     public void updateDiamonds(String diamonds) {
         editor.putString("diamonds", diamonds);
@@ -52,17 +57,5 @@ public class SharedPrefrencesHelper {
         editor.apply();
     }
 
-
-
-
-    /*private void saveDataToSharedPref(String tiktokUserKey, String tiktokURL, String diamonds) {
-        SharedPreferences sharedpreferences = getSharedPreferences("TikTokLikesandShares", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("userkey", tiktokUserKey);
-        editor.putString("profileURL", tiktokURL);
-        editor.putString("diamonds", diamonds);
-        editor.apply();
-
-    }*/
 
 }

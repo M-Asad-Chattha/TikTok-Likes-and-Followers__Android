@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -60,6 +61,8 @@ public class CommentsListActivity extends AppCompatActivity {
 
         /*Load saved Data into Toolbar{link@SharedPrefrences}*/
         loadToolbarData();
+
+        Toast.makeText(this, "No Comments List Found", Toast.LENGTH_SHORT).show();
 
         AudienceNetworkAds.initialize(this);
         loadNativeAd();

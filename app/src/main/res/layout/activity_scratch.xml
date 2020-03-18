@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".Activities.Earn.ScratchActivity">
 
@@ -31,7 +32,7 @@
                 android:padding="10dp"
                 android:text="Try Your luck by scratching coupons and win Diamond"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.asadchattha.tiktoklikesandfollowers.Helper.SharedPrefrencesHelper;
 import com.asadchattha.tiktoklikesandfollowers.Model.User;
 import com.asadchattha.tiktoklikesandfollowers.R;
 import com.facebook.ads.*;
@@ -41,6 +42,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = mInflater.inflate(R.layout.fragment_home, container, false);
 
+
         AudienceNetworkAds.initialize(getContext());
         bannerAdView = new AdView(getContext(), "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
         LinearLayout adContainer = root.findViewById(R.id.banner_container_home);
@@ -48,15 +50,16 @@ public class HomeFragment extends Fragment {
         bannerAdView.loadAd();
 
 //        readFirebaseData();
-//        updateProfileDetail(mUser, root);
+        updateProfileDetail(root);
 
         return root;
     }
 
 
-    private void updateProfileDetail(User user, View view) {
+    private void updateProfileDetail(View view) {
+        SharedPrefrencesHelper sharedPrefrencesHelper = new SharedPrefrencesHelper(getContext());
         TextView userName = view.findViewById(R.id.text_view_userName);
-        userName.setText(user.getUserName());
+        userName.setText(sharedPrefrencesHelper.getUserName());
     }
 
     private void loadDataFromSharedPref(String tiktokURL, String tiktokUserKey) {

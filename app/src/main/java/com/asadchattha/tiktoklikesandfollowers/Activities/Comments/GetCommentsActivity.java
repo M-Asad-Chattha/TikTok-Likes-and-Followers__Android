@@ -47,7 +47,7 @@ public class GetCommentsActivity extends AppCompatActivity {
         follower.add(new Follower("Get 500 real comments in 900 diamonds.", "Get 500 Comments", 900, 500));
         follower.add(new Follower("Get 1000 real comments in 1600 diamonds.", "Get 1000 Comments", 1600, 1000));
 
-        GetFollowerAdapter itemsAdapter = new GetFollowerAdapter(this, follower, R.drawable.ic_add_comment);
+        GetFollowerAdapter itemsAdapter = new GetFollowerAdapter(this, follower, R.drawable.ic_comment);
 
         //Access LinearLayout to add subView into that.
         ListView listView = findViewById(R.id.list);

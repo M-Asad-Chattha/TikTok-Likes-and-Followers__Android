@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
         android:orientation="vertical"
         android:paddingBottom="20dp"
         tools:context=".Fragments.ShareFragment">
@@ -23,7 +23,9 @@
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
                 <ImageView
-                    style="@style/image_view_insideCardWidget_earnFragment"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="16dp"
                     android:src="@drawable/ic_get_share" />
 
                 <TextView
@@ -43,7 +45,9 @@
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
                 <ImageView
-                    style="@style/image_view_insideCardWidget_earnFragment"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="16dp"
                     android:src="@drawable/ic_share_list" />
 
                 <TextView

@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#D3122E</color>
+    <color name="colorPrimaryDark">#940C20</color>
+    <!--    <color name="colorAccent">#D81B60</color>-->
+
+    <color name="colorAccent">#FFA70B</color>
+
+    <color name="colorTransparent">#00F70101</color>
+
+    <color name="colorCardBackground">#DF2C5D</color>
+
+    <!--<color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#D81B60</color>-->
 
     <!-- Background color of CardView used in {layout@activity_main_error}-->
-    <color name="colorCardBackground">#B2FFFFFF</color>
+    <!--    <color name="colorCardBackground">#B2FFFFFF</color>-->
 </resources>

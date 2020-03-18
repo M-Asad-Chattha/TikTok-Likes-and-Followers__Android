@@ -46,7 +46,7 @@ public class EarnFragment extends Fragment {
     private CardView mCardDoFollowing;
     private CardView mCardDoComment;
     private CardView mCardDoShare;
-    private CardView mCardRateUs;
+//    private CardView mCardRateUs;
 
     /**
      * facebook Native ad
@@ -128,14 +128,14 @@ public class EarnFragment extends Fragment {
 
 
         /** Rate Us CardView */
-        mCardRateUs = root.findViewById(R.id.card_rateUs);
+        /*mCardRateUs = root.findViewById(R.id.card_rateUs);
         mCardRateUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), RateUsActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         AudienceNetworkAds.initialize(getContext());
         loadNativeAd(root);

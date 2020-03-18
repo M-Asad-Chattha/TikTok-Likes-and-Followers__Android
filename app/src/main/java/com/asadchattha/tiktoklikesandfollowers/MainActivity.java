@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString("userkey", tiktokUserKey);
         editor.putString("profileURL", tiktokURL);
-        editor.putString("userName", tiktokURL);
+        editor.putString("userName", tiktokUserName);
         editor.putString("diamonds", diamonds);
         editor.apply();
 
