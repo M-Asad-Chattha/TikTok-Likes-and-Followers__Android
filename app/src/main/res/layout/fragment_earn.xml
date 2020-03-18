@@ -108,8 +108,10 @@
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
                 <ImageView
-                    style="@style/image_view_insideCardWidget_earnFragment"
-                    android:src="@drawable/ic_add_follower" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_do_following" />
 
                 <TextView
                     style="@style/text_view_insideCardWidget_earnFragment"
@@ -132,8 +134,10 @@
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
                 <ImageView
-                    style="@style/image_view_insideCardWidget_earnFragment"
-                    android:src="@drawable/ic_comment_list" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_do_comment" />
 
                 <TextView
                     style="@style/text_view_insideCardWidget_earnFragment"
@@ -156,8 +160,10 @@
             <LinearLayout style="@style/linear_layout_insideCardWidget_earnFragment">
 
                 <ImageView
-                    style="@style/image_view_insideCardWidget_earnFragment"
-                    android:src="@drawable/ic_get_share" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_do_share" />
 
                 <TextView
                     style="@style/text_view_insideCardWidget_earnFragment"

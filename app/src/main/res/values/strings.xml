@@ -18,7 +18,7 @@
     <string name="likes_pasteInstruction">Copy and Paste Tiktok video URL</string>
     <string name="likes_input_title">Video URL</string>
     <string name="likes_input_hint">Enter Video URL</string>
-    <string name="likes_verify_title">Check Your Video Here Then Submit</string>
+    <string name="likes_verify_title">Check Your Video Here Then Submit --></string>
     <string name="likes_note">Note: When you get likes on your old video then submit new video URL after 48 hours</string>
 
 
@@ -27,7 +27,7 @@
     <string name="comments_pasteInstruction">Copy and Paste Tiktok video URL</string>
     <string name="comments_input_title">Video URL</string>
     <string name="comments_input_hint">Enter Video URL</string>
-    <string name="comments_verify_title">Check Your Video Here Then Submit</string>
+    <string name="comments_verify_title">Check Your Video Here Then Submit --></string>
     <string name="comments_note">Note: When you get comments on your old video then submit new video URL after 48 hours</string>
 
 
@@ -36,7 +36,7 @@
     <string name="shares_pasteInstruction">Copy and Paste Tiktok video URL</string>
     <string name="shares_input_title">Video URL</string>
     <string name="shares_input_hint">Enter Video URL</string>
-    <string name="shares_verify_title">Check Your Video Here Then Submit</string>
+    <string name="shares_verify_title">Check Your Video Here Then Submit --></string>
     <string name="shares_note">Note: When you get shares on your old video then submit new video URL after 48 hours</string>
 
 
@@ -45,7 +45,7 @@
     <string name="followers_pasteInstruction">Copy and Paste Tiktok profile URL</string>
     <string name="followers_input_title">Profile URL</string>
     <string name="followers_input_hint">Enter Profile URL</string>
-    <string name="followers_verify_title">Check Your Profile Here Then Submit</string>
+    <string name="followers_verify_title">Check Your Profile Here Then Submit --></string>
     <string name="followers_note">Note: When you get followers on your profile then try again after 48 hours</string>
 
 

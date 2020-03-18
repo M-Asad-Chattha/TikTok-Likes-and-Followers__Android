@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".Activities.Earn.DoShareActivity">
 
     <include
@@ -33,6 +34,7 @@
                 android:id="@+id/native_ad_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:orientation="vertical"
                 android:padding="16dp" />
 

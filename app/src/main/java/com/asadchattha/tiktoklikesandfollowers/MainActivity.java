@@ -247,7 +247,6 @@ public class MainActivity extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         String saevedKey = dataSnapshot1.getKey();
 
-                        Log.i("READ", "Already existed user's key is: " + saevedKey);
 //                        Toast.makeText(MainActivity.this, "User Already Exist", Toast.LENGTH_SHORT).show();
 
                         readDataFromFirebase(saevedKey, mTiktokUserURL);
@@ -276,7 +275,8 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
 
-                saveDataToSharedPref(userKey, tiktokURL, editTextUserName.getText().toString(),user.getDiamond());
+//                saveDataToSharedPref(userKey, tiktokURL, editTextUserName.getText().toString(), user.getDiamond());
+                saveDataToSharedPref(userKey, tiktokURL, user.getUserName(), user.getDiamond());
                 goToNextActivity();
                 Log.i("READ", "Saved Diamonds on Firebase are: " + user.getDiamond());
             }

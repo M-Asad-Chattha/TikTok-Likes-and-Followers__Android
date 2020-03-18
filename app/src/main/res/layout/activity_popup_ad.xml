@@ -8,21 +8,25 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ic_close"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:onClick="onClickClose"
+
             android:src="@drawable/ic_close"
             app:civ_border_color="@android:color/holo_red_light"
-            app:civ_border_width="1dp" />
+            app:civ_border_width="3dp" />
 
 
         <RelativeLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ic_close"

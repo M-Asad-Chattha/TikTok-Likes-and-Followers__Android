@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background"
     android:layout_height="match_parent"
     tools:context=".Activities.Earn.DoFollowingActivity">
 
@@ -11,15 +12,31 @@
         layout="@layout/custom_toolbar" />
 
 
-    <!-- DO Something Here-->
-
-
-    <!-- Native Ad Banner -->
-    <com.facebook.ads.NativeAdLayout
-        android:id="@+id/native_ad_container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground" />
+
+
+            <!-- Native Ad Banner -->
+            <com.facebook.ads.NativeAdLayout
+                android:id="@+id/native_ad_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical"
+                android:padding="16dp" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

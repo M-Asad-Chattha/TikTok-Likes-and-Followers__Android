@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:layout_height="match_parent">
+    tools:context=".Fragments.LikeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingBottom="20dp"
-        tools:context=".Fragments.LikeFragment">
+        android:paddingBottom="20dp">
 
 
         <!-- Get Likes Card -->

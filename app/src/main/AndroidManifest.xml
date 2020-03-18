@@ -15,7 +15,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Activities.Designing.PopupActivity"
-            android:theme="@style/AppTheme.popup" />
+            android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".Activities.Designing.PopupAdActivity"
             android:theme="@style/AppTheme.popup" />

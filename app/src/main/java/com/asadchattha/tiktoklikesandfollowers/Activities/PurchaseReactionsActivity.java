@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,8 +45,8 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     /*GUI Views*/
-    private CircleImageView imageViewReaction_1;
-    private CircleImageView imageViewReaction_2;
+    private ImageView imageViewReaction_1;
+    private ImageView imageViewReaction_2;
 
     private TextView textViewTitleMain;
     private TextView textViewPasteInstruction;
@@ -180,8 +181,8 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
 
     private void loadGUIValues() {
         if (reactionTypeSendedByIntent.equals("Followers")) {
-            imageViewReaction_1.setImageResource(R.drawable.ic_tiktok);
-            imageViewReaction_2.setImageResource(R.drawable.ic_tiktok);
+            imageViewReaction_1.setImageResource(R.drawable.ic_do_following);
+            imageViewReaction_2.setImageResource(R.drawable.ic_user);
 
             textViewTitleMain.setText(R.string.followers_title_main);
             textViewPasteInstruction.setText(R.string.followers_pasteInstruction);
@@ -194,8 +195,8 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
             editText.setHint(R.string.followers_input_hint);
 
         } else if (reactionTypeSendedByIntent.equals("Likes")) {
-            imageViewReaction_1.setImageResource(R.drawable.ic_tiktok);
-            imageViewReaction_2.setImageResource(R.drawable.ic_tiktok);
+            imageViewReaction_1.setImageResource(R.drawable.ic_do_likes);
+            imageViewReaction_2.setImageResource(R.drawable.ic_video_rounded);
 
             textViewTitleMain.setText(R.string.likes_title_main);
             textViewPasteInstruction.setText(R.string.likes_pasteInstruction);
@@ -208,8 +209,8 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
             editText.setHint(R.string.likes_input_hint);
 
         } else if (reactionTypeSendedByIntent.equals("Comments")) {
-            imageViewReaction_1.setImageResource(R.drawable.ic_tiktok);
-            imageViewReaction_2.setImageResource(R.drawable.ic_tiktok);
+            imageViewReaction_1.setImageResource(R.drawable.ic_comment_list);
+            imageViewReaction_2.setImageResource(R.drawable.ic_video_rounded);
 
             textViewTitleMain.setText(R.string.comments_title_main);
             textViewPasteInstruction.setText(R.string.comments_pasteInstruction);
@@ -222,8 +223,8 @@ public class PurchaseReactionsActivity extends AppCompatActivity {
             editText.setHint(R.string.comments_input_hint);
 
         } else if (reactionTypeSendedByIntent.equals("Shares")) {
-            imageViewReaction_1.setImageResource(R.drawable.ic_tiktok);
-            imageViewReaction_2.setImageResource(R.drawable.ic_tiktok);
+            imageViewReaction_1.setImageResource(R.drawable.ic_share_list);
+            imageViewReaction_2.setImageResource(R.drawable.ic_video_rounded);
 
             textViewTitleMain.setText(R.string.shares_title_main);
             textViewPasteInstruction.setText(R.string.shares_pasteInstruction);

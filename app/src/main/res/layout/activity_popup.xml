@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A8000000"
+    android:background="#CC000000"
     tools:context=".Activities.Designing.PopupAdActivity">
 
+    <!--android:background="#A8000000"-->
 
     <com.cooltechworks.views.ScratchImageView
         android:id="@+id/image_view_scratch"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerInParent="true"
-        android:background="@android:color/white"
-        android:src="@mipmap/ic_launcher" />
+        android:background="@color/colorCardBackground"
+        android:src="@drawable/ic_diamond" />
 
 
 </RelativeLayout>

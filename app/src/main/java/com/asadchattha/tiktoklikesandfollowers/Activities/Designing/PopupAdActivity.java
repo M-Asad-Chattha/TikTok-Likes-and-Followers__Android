@@ -55,16 +55,6 @@ public class PopupAdActivity extends AppCompatActivity {
         params.y = -20;
         getWindow().setAttributes(params);
 
-       /* // end popup
-        lv_athletes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                sessionManager.setSelectedAthlete(athleteslist.get(position));
-                Intent intent = new Intent(PopupActivity.this, ScratchAndWinActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });*/
 
         AudienceNetworkAds.initialize(this);
         loadNativeAd();
