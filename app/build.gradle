@@ -53,4 +53,7 @@ dependencies {
     /*Scratch View {link@https://github.com/sharish/ScratchView}*/
     implementation 'com.github.cooltechworks:ScratchView:1.1'
 
+    /*Slider [OnBoarding] for introduce app to User {link@https://github.com/AppIntro/AppIntro}*/
+    implementation 'com.github.AppIntro:AppIntro:5.1.0'
+
 }

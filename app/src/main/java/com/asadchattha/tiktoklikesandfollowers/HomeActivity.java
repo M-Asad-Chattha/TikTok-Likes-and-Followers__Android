@@ -6,14 +6,22 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asadchattha.tiktoklikesandfollowers.Helper.SharedPrefrencesHelper;
 import com.asadchattha.tiktoklikesandfollowers.Model.User;
@@ -26,11 +34,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 public class HomeActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private SharedPrefrencesHelper sharedPrefrencesHelper;
+
+    private KProgressHUD hud;
 
     private int[] tabIcons = {
             R.drawable.ic_tab_home,
@@ -79,8 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         ColorStateList colors;
         if (Build.VERSION.SDK_INT >= 23) {
             colors = getResources().getColorStateList(R.color.tabselected, getTheme());
-        }
-        else {
+        } else {
             colors = getResources().getColorStateList(R.color.tabselected);
         }
 
@@ -162,5 +172,63 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("If you are happy with our APP, Rate US OR EXIT")
+                .setTitle("Confirmation");
+        builder.setPositiveButton("Rate US", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.asadchattha.tiktoklikesandfollowers")));
+            }
+        }).setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                homeIntent.addCategory(Intent.CATEGORY_HOME);
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+            }
+        });
+
+        builder.setCancelable(false);
+        builder.create().show();
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_option, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        hud = KProgressHUD.create(HomeActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+
+        signOut();
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void signOut() {
+        SharedPreferences preferences = getSharedPreferences("TikTokLikesandShares", Context.MODE_PRIVATE);
+        preferences.edit().clear().apply();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+
+        if (hud.isShowing()) {
+            hud.dismiss();
+        }
     }
 }

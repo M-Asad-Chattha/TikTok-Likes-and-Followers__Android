@@ -17,4 +17,13 @@
 
     <!-- Background color of CardView used in {layout@activity_main_error}-->
     <!--    <color name="colorCardBackground">#B2FFFFFF</color>-->
+
+
+    <!--Slier Background Colors-->
+    <color name="colorSlider_1">#00BCD4</color>
+    <color name="colorSlider_2">#4CAF50</color>
+    <color name="colorSlider_3">#4CAF50</color>
+    <color name="colorSlider_4">#4CAF50</color>
+    <color name="colorSlider_5">#4CAF50</color>
+
 </resources>

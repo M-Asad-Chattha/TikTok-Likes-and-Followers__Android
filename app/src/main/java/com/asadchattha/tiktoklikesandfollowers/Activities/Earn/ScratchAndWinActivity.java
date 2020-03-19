@@ -202,9 +202,6 @@ public class ScratchAndWinActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-        Intent intent = new Intent(ScratchAndWinActivity.this, HomeActivity.class);
-        startActivity(intent);
         finish();
     }
 }

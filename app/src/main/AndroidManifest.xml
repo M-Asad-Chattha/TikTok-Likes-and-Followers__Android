@@ -10,6 +10,9 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activities.SliderActivity"
+            android:theme="@style/SplashTheme" />
 
         <activity
             android:name=".Activities.SplashActivity"
@@ -20,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <activity
             android:name=".Activities.PurchaseReactionsActivity"
@@ -49,12 +51,14 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
-        <!--<intent-filter>
+        <!--
+<intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-    </activity>-->
+    </activity>
+        -->
         <activity
             android:name=".Activities.Earn.RateUsActivity"
             android:label="Rate US"

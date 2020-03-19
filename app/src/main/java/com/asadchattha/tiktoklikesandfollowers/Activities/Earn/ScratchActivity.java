@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,10 @@ import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdIconView;
 import com.facebook.ads.AdOptionsView;
+import com.facebook.ads.AdSettings;
 import com.facebook.ads.AudienceNetworkAds;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdLayout;
@@ -35,11 +39,58 @@ public class ScratchActivity extends AppCompatActivity {
     private static int count = 0;
     private Toolbar toolbar;
     private SharedPrefrencesHelper sharedPrefrencesHelper;
+
     /*facebook Native ad*/
     private NativeAdLayout nativeAdLayout;
     private LinearLayout adView;
     private NativeAd nativeAd;
+
+    /*Facebook Interstitial Ad*/
+    private InterstitialAd interstitialAd;
+
     private String rewardAmount;
+
+
+    /*Interstitial CallBack Event Listener*/
+//    private InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
+//        @Override
+//        public void onInterstitialDisplayed(Ad ad) {
+//            // Interstitial ad displayed callback
+//            Log.e("TAG", "Interstitial ad displayed.");
+//        }
+//
+//        @Override
+//        public void onInterstitialDismissed(Ad ad) {
+//            // Interstitial dismissed callback
+//            Log.e("TAG", "Interstitial ad dismissed.");
+//        }
+//
+//        @Override
+//        public void onError(Ad ad, AdError adError) {
+//            // Ad error callback
+//            Log.e("TAG", "Interstitial ad failed to load: " + adError.getErrorMessage());
+//        }
+//
+//        @Override
+//        public void onAdLoaded(Ad ad) {
+//            // Interstitial ad is loaded and ready to be displayed
+//            Log.d("TAG", "Interstitial ad is loaded and ready to be displayed!");
+//            // Show the ad
+//            interstitialAd.show();
+//        }
+//
+//        @Override
+//        public void onAdClicked(Ad ad) {
+//            // Ad clicked callback
+//            Log.d("TAG", "Interstitial ad clicked!");
+//        }
+//
+//        @Override
+//        public void onLoggingImpression(Ad ad) {
+//            // Ad impression logged callback
+//            Log.d("TAG", "Interstitial ad impression logged!");
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,18 +117,48 @@ public class ScratchActivity extends AppCompatActivity {
         /*Load saved Data into Toolbar{link@SharedPrefrences}*/
         loadToolbarData();
 
-        /*Popup Activity*//*
-        Intent intent = new Intent(ScratchActivity.this, PopupActivity.class);
-        startActivity(intent);*/
-
-        AudienceNetworkAds.initialize(this);
-        loadNativeAd();
-
         rewardAmount = getIntent().getStringExtra("Reward");
 
-//        Toast.makeText(this, "Reward is: "+ rewardAmount, Toast.LENGTH_SHORT).show();
-    }
+        AudienceNetworkAds.initialize(this);
 
+        interstitialAd = new InterstitialAd(this, "YOUR_PLACEMENT_ID");
+        interstitialAd.setAdListener(new InterstitialAdListener() {
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+                // Interstitial ad displayed callback
+            }
+
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+                // Interstitial dismissed callback
+            }
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+                // Ad error callback
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+                interstitialAd.show();
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+                // Ad clicked callback
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+                // Ad impression logged callback
+            }
+        });
+
+        interstitialAd.loadAd();
+
+        loadNativeAd();
+
+    }
 
     private void loadToolbarData() {
         updateUI(sharedPrefrencesHelper.getDiamonds());
@@ -193,5 +274,15 @@ public class ScratchActivity extends AppCompatActivity {
         startActivity(intent);
 //        Toast.makeText(this, "Scratching Start", Toast.LENGTH_SHORT).show();
 
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        if (nativeAd != null && interstitialAd != null) {
+            nativeAd.destroy();
+            interstitialAd.destroy();
+        }
+        super.onDestroy();
     }
 }
