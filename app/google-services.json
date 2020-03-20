@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:643912494550:android:2b7ff55a153ef1f36f0877",
+        "mobilesdk_app_id": "1:643912494550:android:52ffa33c761d649d6f0877",
         "android_client_info": {
-          "package_name": "com.asadchattha.tiktoklikesandfollowers"
+          "package_name": "com.softarena.tiktoklikesandfollowers"
         }
       },
       "oauth_client": [
         {
-          "client_id": "643912494550-v4defj7h0gtro8vodjnsoj7if98tcc5c.apps.googleusercontent.com",
+          "client_id": "643912494550-pb0fd4qjhevam4i2mh11hdb4o9nja1sr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.asadchattha.tiktoklikesandfollowers",
+            "package_name": "com.softarena.tiktoklikesandfollowers",
             "certificate_hash": "70c6c773c5f78702163135f9025ae8635ad3cc95"
           }
         },

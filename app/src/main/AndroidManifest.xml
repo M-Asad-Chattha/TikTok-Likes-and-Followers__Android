@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.asadchattha.tiktoklikesandfollowers">
+    package="com.softarena.tiktoklikesandfollowers">
 
     <application
         android:allowBackup="true"
@@ -11,11 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.SliderActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.SliderActivity"
             android:theme="@style/SplashTheme" />
 
         <activity
-            android:name=".Activities.SplashActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,30 +25,30 @@
         </activity>
 
         <activity
-            android:name=".Activities.PurchaseReactionsActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.PurchaseReactionsActivity"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".Activities.Designing.PopupActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Designing.PopupActivity"
             android:theme="@style/Theme.Transparent" />
         <activity
-            android:name=".Activities.Designing.PopupAdActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Designing.PopupAdActivity"
             android:theme="@style/AppTheme.popup" />
         <activity
-            android:name=".Activities.Earn.ScratchActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Earn.ScratchActivity"
             android:theme="@style/NoActionBarTheme" />
-        <activity android:name=".Activities.Likes.PayToGetLikesActivity" />
+        <activity android:name="com.softarena.tiktoklikesandfollowers.Activities.Likes.PayToGetLikesActivity" />
         <activity
-            android:name=".Activities.Followers.FollowersListActivity"
-            android:theme="@style/NoActionBarTheme" />
-        <activity
-            android:name=".Activities.Followers.GetFollowerActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Followers.FollowersListActivity"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".HomeActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Followers.GetFollowerActivity"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.HomeActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name="com.softarena.tiktoklikesandfollowers.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenTheme" />
         <!--
@@ -60,55 +60,55 @@
     </activity>
         -->
         <activity
-            android:name=".Activities.Earn.RateUsActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Earn.RateUsActivity"
             android:label="Rate US"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Earn.DoShareActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Earn.DoShareActivity"
             android:label="Do Share"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Earn.DoCommentActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Earn.DoCommentActivity"
             android:label="Do Comment"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Earn.DoFollowingActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Earn.DoFollowingActivity"
             android:label="Do Folowing"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Earn.DoLikesActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Earn.DoLikesActivity"
             android:label="Do Likes"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Earn.ScratchAndWinActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Earn.ScratchAndWinActivity"
             android:label="Scratch and Win"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Earn.WatchVideosActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Earn.WatchVideosActivity"
             android:label="Watch Videos"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Likes.LikesListActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Likes.LikesListActivity"
             android:label="Likes List"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Likes.GetLikesActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Likes.GetLikesActivity"
             android:label="Get Likes"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Comments.CommentsListActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Comments.CommentsListActivity"
             android:label="Comments List"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Comments.GetCommentsActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Comments.GetCommentsActivity"
             android:label="Get Comments"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Shares.ShareListActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Shares.ShareListActivity"
             android:label="Share List"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".Activities.Shares.GetShareActivity"
+            android:name="com.softarena.tiktoklikesandfollowers.Activities.Shares.GetShareActivity"
             android:label="Get Share"
             android:theme="@style/NoActionBarTheme" />
     </application>
