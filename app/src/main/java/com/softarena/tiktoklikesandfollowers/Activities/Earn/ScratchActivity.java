@@ -116,7 +116,7 @@ public class ScratchActivity extends AppCompatActivity {
 
         AudienceNetworkAds.initialize(this);
 
-        interstitialAd = new InterstitialAd(this, "YOUR_PLACEMENT_ID");
+        interstitialAd = new InterstitialAd(this, getString(R.string.id_ad_interstitial));
         interstitialAd.setAdListener(new InterstitialAdListener() {
             @Override
             public void onInterstitialDisplayed(Ad ad) {
@@ -181,7 +181,7 @@ public class ScratchActivity extends AppCompatActivity {
         // now, while you are testing and replace it later when you have signed up.
         // While you are using this temporary code you will only get test ads and if you release
         // your code like this to the Google Play your users will not receive ads (you will get a no fill error).
-        nativeAd = new NativeAd(this, "VID_HD_9_16_39S_APP_INSTALL#YOUR_PLACEMENT_ID");
+        nativeAd = new NativeAd(this, getString(R.string.id_ad_native));
 
         nativeAd.setAdListener(new NativeAdListener() {
 

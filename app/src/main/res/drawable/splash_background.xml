@@ -4,7 +4,7 @@
     <!--    <item android:drawable="@drawable/splash" />-->
 
     <item>
-        <bitmap android:src="@drawable/splash" />
+        <bitmap android:src="@drawable/img_spalsh" />
     </item>
 
 

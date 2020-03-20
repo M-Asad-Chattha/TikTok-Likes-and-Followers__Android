@@ -38,7 +38,7 @@ public class LikesListActivity extends AppCompatActivity {
     private NativeAd nativeAd;
 
     /*Progress Hud*/
-    KProgressHUD hud;
+    private KProgressHUD hud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class LikesListActivity extends AppCompatActivity {
         // now, while you are testing and replace it later when you have signed up.
         // While you are using this temporary code you will only get test ads and if you release
         // your code like this to the Google Play your users will not receive ads (you will get a no fill error).
-        nativeAd = new NativeAd(this, "VID_HD_9_16_39S_APP_INSTALL#YOUR_PLACEMENT_ID");
+        nativeAd = new NativeAd(this, getString(R.string.id_ad_native));
 
         nativeAd.setAdListener(new NativeAdListener() {
 

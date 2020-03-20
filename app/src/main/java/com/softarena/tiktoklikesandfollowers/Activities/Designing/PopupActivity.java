@@ -86,7 +86,7 @@ public class PopupActivity extends AppCompatActivity {
 
         /*facebook InterstitialAd*/
         AudienceNetworkAds.initialize(this);
-        interstitialAd = new InterstitialAd(this, "YOUR_PLACEMENT_ID"); //2440420156058066_2444457038987711
+        interstitialAd = new InterstitialAd(this, getString(R.string.id_ad_interstitial));
         interstitialAd.setAdListener(interstitialAdListener);
 
         rewardAmount = getIntent().getStringExtra("Reward");

@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
 
 
         AudienceNetworkAds.initialize(getContext());
-        bannerAdView = new AdView(getContext(), getString(R.string.banner_ad_id), AdSize.BANNER_HEIGHT_50);
+        bannerAdView = new AdView(getContext(), getString(R.string.id_ad_banner), AdSize.BANNER_HEIGHT_50);
         LinearLayout adContainer = root.findViewById(R.id.banner_container_home);
         adContainer.addView(bannerAdView);
         bannerAdView.loadAd();

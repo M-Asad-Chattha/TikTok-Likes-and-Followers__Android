@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize the Facebook Adds Audience Network SDK
         AudienceNetworkAds.initialize(this);
 
-        interstitialAd = new InterstitialAd(this, "IMG_16_9_APP_INSTALL#"); //2440420156058066_2444457038987711
+        interstitialAd = new InterstitialAd(this, getString(R.string.id_ad_interstitial)); //2440420156058066_2444457038987711
         interstitialAd.setAdListener(interstitialAdListener);
 
 
@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         // For auto play video ads, it's recommended to load the ad
         // at least 30 seconds before it is shown
         interstitialAd.loadAd();
-        AdSettings.setTestMode(true);
 
         /** Banner Ad */
 

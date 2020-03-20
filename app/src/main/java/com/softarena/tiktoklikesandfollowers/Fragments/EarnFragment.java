@@ -146,7 +146,7 @@ public class EarnFragment extends Fragment {
         // now, while you are testing and replace it later when you have signed up.
         // While you are using this temporary code you will only get test ads and if you release
         // your code like this to the Google Play your users will not receive ads (you will get a no fill error).
-        nativeAd = new NativeAd(getContext(), "VID_HD_9_16_39S_APP_INSTALL#YOUR_PLACEMENT_ID");
+        nativeAd = new NativeAd(getContext(), getString(R.string.id_ad_native));
 
         nativeAd.setAdListener(new NativeAdListener() {
 
