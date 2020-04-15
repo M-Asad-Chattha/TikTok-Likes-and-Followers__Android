@@ -172,7 +172,7 @@ public class HomeActivity extends AppCompatActivity {
         builder.setPositiveButton("Rate US", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.asadchattha.tiktoklikesandfollowers")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.softarena.tiktoklikesandfollowers")));
             }
         }).setNegativeButton("Exit", new DialogInterface.OnClickListener() {
             @Override

@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
         // NOTE: The placement ID from the Facebook Monetization Manager identifies your App.
         // To get test ads, add IMG_16_9_APP_INSTALL# to your placement id. Remove this when your app is ready to serve real ads.
 
-        bannerAdView = new AdView(this, "IMG_16_9_APP_INSTALL#", AdSize.BANNER_HEIGHT_50);
-//        2440420156058066_2440446256055456
+        bannerAdView = new AdView(this, getString(R.string.id_ad_banner), AdSize.BANNER_HEIGHT_50);
+
         // Find the Ad Container
         LinearLayout adContainer = findViewById(R.id.banner_container);
 
@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
         Matcher matcher = pattern.matcher(tiktokURL);
 
         boolean matchFound = matcher.matches();
+
 
         if (matchFound && !titktokUserName.isEmpty()) {
             isUserExist(tiktokURL);
